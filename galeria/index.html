@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Galeria — Nômade Produtora</title>
+<meta name="description" content="Fotografia de cena e retrato de Carolina Loureiro: 91 imagens em 8 conjuntos.">
+<link rel="canonical" href="https://carolinaloureiro.com/galeria/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nômade Produtora">
+<meta property="og:title" content="Galeria — Nômade Produtora">
+<meta property="og:description" content="Fotografia de cena e retrato de Carolina Loureiro: 91 imagens em 8 conjuntos.">
+<meta property="og:url" content="https://carolinaloureiro.com/galeria/">
+<meta property="og:image" content="https://carolinaloureiro.com/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2305070B'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%234FD8D0'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<style>
+  /* ═══ Sistema Vivo ═══ mesmo mundo do one-pager. */
+  :root {
+    --bg:#05070B; --ink:#E8EDF2; --soft:#8994A2; --faint:#5A6472;
+    --cyan:#4FD8D0; --magenta:#E85A9C; --coral:#FF8A6B;
+    --edge:rgba(79,216,208,0.16); --edge-lo:rgba(79,216,208,0.09);
+    --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.6;
+       -webkit-font-smoothing:antialiased;margin:0;overflow-x:hidden}
+  #field{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block}
+  .topbar,.head,main,.foot{position:relative;z-index:1}
+  .shell{max-width:1320px;margin:0 auto;padding:0 clamp(16px,4vw,52px)}
+  h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+  a{color:inherit}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+
+  .topbar{position:sticky;top:0;z-index:40;background:var(--bg);border-bottom:1px solid var(--edge-lo)}
+  .topbar .shell{display:flex;align-items:center;justify-content:space-between;gap:16px;height:50px}
+  .topbar .wm{font-size:13.5px;font-weight:500;letter-spacing:.07em;text-decoration:none}
+  .topbar .back{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+                color:var(--faint);text-decoration:none}
+  .topbar .back:hover,.topbar .back:focus-visible{color:var(--cyan)}
+
+  .head{padding:clamp(46px,7vw,96px) 0 clamp(26px,4vw,46px);border-bottom:1px solid var(--edge)}
+  .band-top{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .band-top .num{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--cyan)}
+  .band-top .rule{flex:1;height:1px;background:var(--edge)}
+  .head h1{font-size:clamp(32px,5.4vw,62px);line-height:1.04;letter-spacing:-0.034em;font-weight:500}
+  .head p{margin:18px 0 0;color:var(--soft);font-size:14.5px;line-height:1.68;max-width:58ch}
+  .head .tot{margin-top:14px;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;
+             text-transform:uppercase;color:var(--cyan);font-variant-numeric:tabular-nums}
+
+  main{padding:clamp(24px,3.4vw,44px) 0 clamp(40px,6vw,80px)}
+  .gal-group{margin-top:clamp(28px,3.6vw,46px)}
+  .gal-head{display:flex;align-items:baseline;gap:12px;padding-bottom:11px;margin-bottom:13px;
+            border-bottom:1px solid var(--edge-lo);flex-wrap:wrap}
+  .gal-head h2{font-size:19px;letter-spacing:-0.018em;font-weight:500}
+  .gal-head .meta{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
+                  color:var(--cyan);font-variant-numeric:tabular-nums;margin-left:auto}
+  .grid{columns:4 210px;column-gap:10px}
+  .grid button{display:block;width:100%;margin:0 0 10px;padding:0;border:0;background:none;
+               cursor:zoom-in;break-inside:avoid;position:relative;line-height:0}
+  .grid img{width:100%;height:auto;display:block;background:#0A0D14}
+  .grid button::after{content:"";position:absolute;inset:0;pointer-events:none;
+                      box-shadow:inset 0 0 0 1px rgba(79,216,208,0);transition:box-shadow .16s}
+  .grid button:hover::after,.grid button:focus-visible::after{box-shadow:inset 0 0 0 1px rgba(79,216,208,.75)}
+
+  .lb{position:fixed;inset:0;z-index:90;background:rgba(5,7,11,.97);display:none;
+      align-items:center;justify-content:center;padding:clamp(52px,7vw,72px) clamp(14px,4vw,52px)}
+  .lb.open{display:flex}
+  .lb img{max-width:100%;max-height:82vh;width:auto;height:auto;display:block}
+  .lb .bar{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;
+           justify-content:space-between;gap:14px;padding:14px clamp(14px,4vw,28px)}
+  .lb .cap{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+           color:var(--cyan);font-variant-numeric:tabular-nums}
+  .lb button{background:none;border:1px solid var(--edge);color:var(--ink);font-family:var(--mono);
+             font-size:11px;padding:7px 12px;cursor:pointer;border-radius:2px}
+  .lb button:hover{border-color:var(--cyan);color:var(--cyan)}
+  .lb .nav{position:absolute;bottom:clamp(14px,4vw,28px);display:flex;gap:8px}
+
+  .foot{border-top:1px solid var(--edge);padding:clamp(34px,5vw,58px) 0 clamp(28px,4vw,46px)}
+  .contacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:20px clamp(18px,2.6vw,38px)}
+  .contacts div{display:flex;flex-direction:column;gap:7px}
+  .contacts .k{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+  .contacts a{font-size:14.5px;text-decoration:none;border-bottom:1px solid var(--edge);padding-bottom:2px;
+              width:fit-content;max-width:100%;overflow-wrap:anywhere}
+  .contacts a:hover,.contacts a:focus-visible{color:var(--cyan);border-bottom-color:var(--cyan)}
+  .colophon{margin-top:clamp(30px,4vw,48px);padding-top:17px;border-top:1px solid var(--edge-lo);
+            display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;
+            font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<canvas id="field" aria-hidden="true"></canvas>
+
+<div class="topbar">
+  <div class="shell">
+    <a class="wm" href="../">NÔMADE</a>
+    <a class="back" href="../">← Voltar ao site</a>
+  </div>
+</div>
+
+<header class="head">
+  <div class="shell">
+    <div class="band-top"><span class="num">Galeria</span><span class="rule"></span></div>
+    <h1>Fotografia de cena e retrato</h1>
+    <p>Registro de montagens teatrais, processos de criação e retrato, feito por Carolina Loureiro entre 2023 e 2025.</p>
+    <p class="tot">91 fotografias · 8 conjuntos</p>
+  </div>
+</header>
+
+<main>
+  <div class="shell">
+    <section class="gal-group">
+      <div class="gal-head"><h2>As Bacantes</h2><span class="meta">2024 · 11 fotos</span></div>
+      <div class="grid"><button type="button" data-obra="As Bacantes" data-ano="2024" data-full="../img/gal/001.webp"><img src="../img/gal/001t.webp" width="700" height="467" alt="As Bacantes, 2024 — fotografia de Carolina Loureiro"></button><button type="button" data-obra="As Bacantes" data-ano="2024" data-full="../img/gal/002.webp"><img src="../img/gal/002t.webp" width="467" height="700" alt="As Bacantes, 2024 — fotografia de Carolina Loureiro"></button><button type="button" data-obra="As Bacantes" data-ano="2024" data-full="../img/gal/003.webp"><img src="../img/gal/003t.webp" width="467" height="700" alt="As Bacantes, 2024 — fotografia de Carolina Loureiro"></button><button type="button" data-obra="As Bacantes" data-ano="2024" data-full="../img/gal/004.webp"><img src="../img/gal/004t.webp" width="467" height="700" alt="As Bacantes, 2024 — fotografia de Carolina Loureiro"></button><button type="button" data-obra="As Bacantes" data-ano="2024" data-full="../img/gal/005.webp"><img src="../img/gal/005t.webp" width="700" height="467" alt="As Bacantes, 2024 — fotografia de Carolina Loureiro"></button><button type="button" data-obra="As Bacantes" data-ano="2024" data-full="../img/gal/006.webp"><img src="../img/gal/006t.webp" width="466" height="700" alt="As Bacantes, 2024 — fotografia de Carolina Loureiro"></button><button type="button" data-obra="As Bacantes" data-ano="2024" data-full="../img/gal/007.webp"><img src="../img/gal/007t.webp" width="700" height="466" alt="As Bacantes, 2024 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="As Bacantes" data-ano="2024" data-full="../img/gal/008.webp"><img src="../img/gal/008t.webp" width="700" height="432" alt="As Bacantes, 2024 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="As Bacantes" data-ano="2024" data-full="../img/gal/009.webp"><img src="../img/gal/009t.webp" width="700" height="467" alt="As Bacantes, 2024 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="As Bacantes" data-ano="2024" data-full="../img/gal/010.webp"><img src="../img/gal/010t.webp" width="700" height="467" alt="As Bacantes, 2024 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="As Bacantes" data-ano="2024" data-full="../img/gal/011.webp"><img src="../img/gal/011t.webp" width="700" height="467" alt="As Bacantes, 2024 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button></div>
+    </section>
+    <section class="gal-group">
+      <div class="gal-head"><h2>Bronzes e Cristais</h2><span class="meta">2025 · 10 fotos</span></div>
+      <div class="grid"><button type="button" data-obra="Bronzes e Cristais" data-ano="2025" data-full="../img/gal/012.webp"><img src="../img/gal/012t.webp" width="700" height="467" alt="Bronzes e Cristais, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Bronzes e Cristais" data-ano="2025" data-full="../img/gal/013.webp"><img src="../img/gal/013t.webp" width="700" height="467" alt="Bronzes e Cristais, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Bronzes e Cristais" data-ano="2025" data-full="../img/gal/014.webp"><img src="../img/gal/014t.webp" width="700" height="467" alt="Bronzes e Cristais, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Bronzes e Cristais" data-ano="2025" data-full="../img/gal/015.webp"><img src="../img/gal/015t.webp" width="700" height="467" alt="Bronzes e Cristais, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Bronzes e Cristais" data-ano="2025" data-full="../img/gal/016.webp"><img src="../img/gal/016t.webp" width="700" height="467" alt="Bronzes e Cristais, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Bronzes e Cristais" data-ano="2025" data-full="../img/gal/017.webp"><img src="../img/gal/017t.webp" width="467" height="700" alt="Bronzes e Cristais, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Bronzes e Cristais" data-ano="2025" data-full="../img/gal/018.webp"><img src="../img/gal/018t.webp" width="700" height="467" alt="Bronzes e Cristais, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Bronzes e Cristais" data-ano="2025" data-full="../img/gal/019.webp"><img src="../img/gal/019t.webp" width="700" height="467" alt="Bronzes e Cristais, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Bronzes e Cristais" data-ano="2025" data-full="../img/gal/020.webp"><img src="../img/gal/020t.webp" width="700" height="467" alt="Bronzes e Cristais, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Bronzes e Cristais" data-ano="2025" data-full="../img/gal/021.webp"><img src="../img/gal/021t.webp" width="700" height="467" alt="Bronzes e Cristais, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button></div>
+    </section>
+    <section class="gal-group">
+      <div class="gal-head"><h2>Criaturas Invisíveis</h2><span class="meta">2025 · 08 fotos</span></div>
+      <div class="grid"><button type="button" data-obra="Criaturas Invisíveis" data-ano="2025" data-full="../img/gal/022.webp"><img src="../img/gal/022t.webp" width="700" height="467" alt="Criaturas Invisíveis, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Criaturas Invisíveis" data-ano="2025" data-full="../img/gal/023.webp"><img src="../img/gal/023t.webp" width="467" height="700" alt="Criaturas Invisíveis, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Criaturas Invisíveis" data-ano="2025" data-full="../img/gal/024.webp"><img src="../img/gal/024t.webp" width="700" height="467" alt="Criaturas Invisíveis, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Criaturas Invisíveis" data-ano="2025" data-full="../img/gal/025.webp"><img src="../img/gal/025t.webp" width="467" height="700" alt="Criaturas Invisíveis, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Criaturas Invisíveis" data-ano="2025" data-full="../img/gal/026.webp"><img src="../img/gal/026t.webp" width="700" height="467" alt="Criaturas Invisíveis, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Criaturas Invisíveis" data-ano="2025" data-full="../img/gal/027.webp"><img src="../img/gal/027t.webp" width="700" height="467" alt="Criaturas Invisíveis, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Criaturas Invisíveis" data-ano="2025" data-full="../img/gal/028.webp"><img src="../img/gal/028t.webp" width="700" height="467" alt="Criaturas Invisíveis, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Criaturas Invisíveis" data-ano="2025" data-full="../img/gal/029.webp"><img src="../img/gal/029t.webp" width="700" height="467" alt="Criaturas Invisíveis, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button></div>
+    </section>
+    <section class="gal-group">
+      <div class="gal-head"><h2>Elefante</h2><span class="meta">2025 · 08 fotos</span></div>
+      <div class="grid"><button type="button" data-obra="Elefante" data-ano="2025" data-full="../img/gal/030.webp"><img src="../img/gal/030t.webp" width="700" height="394" alt="Elefante, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Elefante" data-ano="2025" data-full="../img/gal/031.webp"><img src="../img/gal/031t.webp" width="467" height="700" alt="Elefante, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Elefante" data-ano="2025" data-full="../img/gal/032.webp"><img src="../img/gal/032t.webp" width="467" height="700" alt="Elefante, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Elefante" data-ano="2025" data-full="../img/gal/033.webp"><img src="../img/gal/033t.webp" width="467" height="700" alt="Elefante, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Elefante" data-ano="2025" data-full="../img/gal/034.webp"><img src="../img/gal/034t.webp" width="700" height="394" alt="Elefante, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Elefante" data-ano="2025" data-full="../img/gal/035.webp"><img src="../img/gal/035t.webp" width="700" height="467" alt="Elefante, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Elefante" data-ano="2025" data-full="../img/gal/036.webp"><img src="../img/gal/036t.webp" width="700" height="467" alt="Elefante, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Elefante" data-ano="2025" data-full="../img/gal/037.webp"><img src="../img/gal/037t.webp" width="700" height="467" alt="Elefante, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button></div>
+    </section>
+    <section class="gal-group">
+      <div class="gal-head"><h2>Eleuthéria</h2><span class="meta">2025 · 06 fotos</span></div>
+      <div class="grid"><button type="button" data-obra="Eleuthéria" data-ano="2025" data-full="../img/gal/038.webp"><img src="../img/gal/038t.webp" width="700" height="467" alt="Eleuthéria, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Eleuthéria" data-ano="2025" data-full="../img/gal/039.webp"><img src="../img/gal/039t.webp" width="700" height="467" alt="Eleuthéria, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Eleuthéria" data-ano="2025" data-full="../img/gal/040.webp"><img src="../img/gal/040t.webp" width="700" height="467" alt="Eleuthéria, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Eleuthéria" data-ano="2025" data-full="../img/gal/041.webp"><img src="../img/gal/041t.webp" width="700" height="467" alt="Eleuthéria, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Eleuthéria" data-ano="2025" data-full="../img/gal/042.webp"><img src="../img/gal/042t.webp" width="700" height="467" alt="Eleuthéria, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Eleuthéria" data-ano="2025" data-full="../img/gal/043.webp"><img src="../img/gal/043t.webp" width="620" height="700" alt="Eleuthéria, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button></div>
+    </section>
+    <section class="gal-group">
+      <div class="gal-head"><h2>Monstros Marinhos</h2><span class="meta">2023 · 05 fotos</span></div>
+      <div class="grid"><button type="button" data-obra="Monstros Marinhos" data-ano="2023" data-full="../img/gal/044.webp"><img src="../img/gal/044t.webp" width="700" height="467" alt="Monstros Marinhos, 2023 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Monstros Marinhos" data-ano="2023" data-full="../img/gal/045.webp"><img src="../img/gal/045t.webp" width="467" height="700" alt="Monstros Marinhos, 2023 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Monstros Marinhos" data-ano="2023" data-full="../img/gal/046.webp"><img src="../img/gal/046t.webp" width="700" height="467" alt="Monstros Marinhos, 2023 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Monstros Marinhos" data-ano="2023" data-full="../img/gal/047.webp"><img src="../img/gal/047t.webp" width="700" height="525" alt="Monstros Marinhos, 2023 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Monstros Marinhos" data-ano="2023" data-full="../img/gal/048.webp"><img src="../img/gal/048t.webp" width="700" height="467" alt="Monstros Marinhos, 2023 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button></div>
+    </section>
+    <section class="gal-group">
+      <div class="gal-head"><h2>Taxidermista</h2><span class="meta">2025 · 08 fotos</span></div>
+      <div class="grid"><button type="button" data-obra="Taxidermista" data-ano="2025" data-full="../img/gal/049.webp"><img src="../img/gal/049t.webp" width="700" height="467" alt="Taxidermista, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Taxidermista" data-ano="2025" data-full="../img/gal/050.webp"><img src="../img/gal/050t.webp" width="700" height="467" alt="Taxidermista, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Taxidermista" data-ano="2025" data-full="../img/gal/051.webp"><img src="../img/gal/051t.webp" width="467" height="700" alt="Taxidermista, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Taxidermista" data-ano="2025" data-full="../img/gal/052.webp"><img src="../img/gal/052t.webp" width="700" height="466" alt="Taxidermista, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Taxidermista" data-ano="2025" data-full="../img/gal/053.webp"><img src="../img/gal/053t.webp" width="560" height="700" alt="Taxidermista, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Taxidermista" data-ano="2025" data-full="../img/gal/054.webp"><img src="../img/gal/054t.webp" width="467" height="700" alt="Taxidermista, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Taxidermista" data-ano="2025" data-full="../img/gal/055.webp"><img src="../img/gal/055t.webp" width="467" height="700" alt="Taxidermista, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Taxidermista" data-ano="2025" data-full="../img/gal/056.webp"><img src="../img/gal/056t.webp" width="700" height="467" alt="Taxidermista, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button></div>
+    </section>
+    <section class="gal-group">
+      <div class="gal-head"><h2>Retrato</h2><span class="meta">2025 · 35 fotos</span></div>
+      <div class="grid"><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/057.webp"><img src="../img/gal/057t.webp" width="700" height="394" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/058.webp"><img src="../img/gal/058t.webp" width="700" height="394" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/059.webp"><img src="../img/gal/059t.webp" width="467" height="700" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/060.webp"><img src="../img/gal/060t.webp" width="700" height="466" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/061.webp"><img src="../img/gal/061t.webp" width="467" height="700" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/062.webp"><img src="../img/gal/062t.webp" width="700" height="467" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/063.webp"><img src="../img/gal/063t.webp" width="467" height="700" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/064.webp"><img src="../img/gal/064t.webp" width="467" height="700" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/065.webp"><img src="../img/gal/065t.webp" width="467" height="700" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/066.webp"><img src="../img/gal/066t.webp" width="467" height="700" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/067.webp"><img src="../img/gal/067t.webp" width="467" height="700" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/068.webp"><img src="../img/gal/068t.webp" width="467" height="700" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/069.webp"><img src="../img/gal/069t.webp" width="700" height="467" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/070.webp"><img src="../img/gal/070t.webp" width="700" height="467" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/071.webp"><img src="../img/gal/071t.webp" width="467" height="700" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/072.webp"><img src="../img/gal/072t.webp" width="700" height="467" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/073.webp"><img src="../img/gal/073t.webp" width="467" height="700" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/074.webp"><img src="../img/gal/074t.webp" width="700" height="467" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/075.webp"><img src="../img/gal/075t.webp" width="700" height="467" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/076.webp"><img src="../img/gal/076t.webp" width="700" height="466" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/077.webp"><img src="../img/gal/077t.webp" width="467" height="700" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/078.webp"><img src="../img/gal/078t.webp" width="467" height="700" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/079.webp"><img src="../img/gal/079t.webp" width="700" height="467" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/080.webp"><img src="../img/gal/080t.webp" width="700" height="467" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/081.webp"><img src="../img/gal/081t.webp" width="467" height="700" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/082.webp"><img src="../img/gal/082t.webp" width="700" height="467" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/083.webp"><img src="../img/gal/083t.webp" width="467" height="700" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/084.webp"><img src="../img/gal/084t.webp" width="466" height="700" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/085.webp"><img src="../img/gal/085t.webp" width="467" height="700" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/086.webp"><img src="../img/gal/086t.webp" width="467" height="700" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/087.webp"><img src="../img/gal/087t.webp" width="467" height="700" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/088.webp"><img src="../img/gal/088t.webp" width="700" height="467" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/089.webp"><img src="../img/gal/089t.webp" width="467" height="700" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/090.webp"><img src="../img/gal/090t.webp" width="700" height="467" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button><button type="button" data-obra="Retrato" data-ano="2025" data-full="../img/gal/091.webp"><img src="../img/gal/091t.webp" width="700" height="467" alt="Retrato, 2025 — fotografia de Carolina Loureiro" loading="lazy" decoding="async"></button></div>
+    </section>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="shell">
+    <div class="contacts">
+      <div><span class="k">E-mail</span><a href="mailto:loureirocarolbm@gmail.com">loureirocarolbm@gmail.com</a></div>
+      <div><span class="k">Substack</span><a href="https://voicenotercarol.substack.com/" target="_blank" rel="noopener noreferrer">voicenotercarol</a></div>
+      <div><span class="k">Instagram</span><a href="https://www.instagram.com/carolinaloureiro/" target="_blank" rel="noopener noreferrer">@carolinaloureiro</a></div>
+      <div><span class="k">Site</span><a href="../">Nômade Produtora</a></div>
+    </div>
+    <div class="colophon">
+      <span>Nômade Produtora · São Paulo · Brasil</span>
+      <span>Direção — Carolina Loureiro</span>
+    </div>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+  <div class="bar"><span class="cap" id="lbcap"></span><button type="button" id="lbclose" aria-label="Fechar">Fechar ✕</button></div>
+  <img id="lbimg" alt="">
+  <div class="nav"><button type="button" id="lbprev" aria-label="Anterior">←</button><button type="button" id="lbnext" aria-label="Próxima">→</button></div>
+</div>
+
+<script>
+(function () {
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var hues = ["79,216,208", "232,90,156", "255,138,107"];
+  var gen = 0;
+
+  function field() {
+    gen++; var mine = gen;
+    var cv = document.getElementById("field");
+    var r = window.devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
+    if (!w || !h) return;
+    cv.width = Math.round(w * r); cv.height = Math.round(h * r);
+    var ctx = cv.getContext("2d"); ctx.setTransform(r, 0, 0, r, 0, 0);
+    var N = [], n = Math.max(14, Math.min(26, Math.round(w / 62)));
+    for (var i = 0; i < n; i++) N.push({
+      x: Math.random() * w, y: Math.random() * h, r: 5 + Math.random() * 16,
+      c: hues[(Math.random() * hues.length) | 0],
+      vx: (Math.random() - .5) * .07, vy: (Math.random() - .5) * .07,
+      box: Math.random() < .18, id: (100 + Math.random() * 900) | 0
+    });
+    (function frame() {
+      if (mine !== gen) return;
+      ctx.clearRect(0, 0, w, h);
+      var i, j, a, b;
+      for (i = 0; i < N.length; i++) for (j = i + 1; j < N.length; j++) {
+        a = N[i]; b = N[j];
+        var dx = a.x - b.x, dy = a.y - b.y, d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 190) {
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = "rgba(79,216,208," + (.07 * (1 - d / 190)) + ")";
+          ctx.lineWidth = .6; ctx.stroke();
+        }
+      }
+      for (i = 0; i < N.length; i++) {
+        a = N[i];
+        var g = ctx.createRadialGradient(a.x, a.y, 0, a.x, a.y, a.r);
+        g.addColorStop(0, "rgba(" + a.c + ",0.2)");
+        g.addColorStop(.45, "rgba(" + a.c + ",0.06)");
+        g.addColorStop(1, "rgba(" + a.c + ",0)");
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2); ctx.fill();
+        if (a.box) {
+          var s = a.r * 1.65;
+          ctx.strokeStyle = "rgba(79,216,208,0.13)"; ctx.lineWidth = .7;
+          ctx.strokeRect(a.x - s, a.y - s, s * 2, s * 2);
+          ctx.fillStyle = "rgba(79,216,208,0.18)";
+          ctx.font = "8px ui-monospace, Menlo, monospace";
+          ctx.fillText("0." + a.id, a.x - s, a.y - s - 4);
+        }
+        a.x += a.vx; a.y += a.vy;
+        if (a.x < -70) a.x = w + 70; if (a.x > w + 70) a.x = -70;
+        if (a.y < -70) a.y = h + 70; if (a.y > h + 70) a.y = -70;
+      }
+      if (!reduce) requestAnimationFrame(frame);
+    })();
+  }
+
+  function lightbox() {
+    var btns = [].slice.call(document.querySelectorAll(".grid button"));
+    if (!btns.length) return;
+    var lb = document.getElementById("lb"), img = document.getElementById("lbimg"),
+        cap = document.getElementById("lbcap"), i = 0, last = null;
+    function show(k) {
+      i = (k + btns.length) % btns.length;
+      var s = btns[i].querySelector("img");
+      img.src = btns[i].dataset.full; img.alt = s.alt;
+      cap.textContent = btns[i].dataset.obra + " · " + btns[i].dataset.ano + " · " + (i + 1) + " / " + btns.length;
+    }
+    function open(k) { last = document.activeElement; show(k); lb.classList.add("open"); document.body.style.overflow = "hidden"; document.getElementById("lbclose").focus(); }
+    function close() { lb.classList.remove("open"); img.src = ""; document.body.style.overflow = ""; if (last) last.focus(); }
+    btns.forEach(function (b, k) { b.addEventListener("click", function () { open(k); }); });
+    document.getElementById("lbclose").addEventListener("click", close);
+    document.getElementById("lbprev").addEventListener("click", function () { show(i - 1); });
+    document.getElementById("lbnext").addEventListener("click", function () { show(i + 1); });
+    lb.addEventListener("click", function (e) { if (e.target === lb) close(); });
+    document.addEventListener("keydown", function (e) {
+      if (!lb.classList.contains("open")) return;
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowLeft") show(i - 1);
+      else if (e.key === "ArrowRight") show(i + 1);
+    });
+  }
+
+  function init() { field(); lightbox(); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+  var t; window.addEventListener("resize", function () { clearTimeout(t); t = setTimeout(field, 220); });
+})();
+</script>
+
+</body>
+</html>

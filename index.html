@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Nômade Produtora</title>
+<meta name="description" content="Produtora de ativos: estratégia, direção, produção executiva, audiovisual e conteúdo. Direção de Carolina Loureiro.">
+<link rel="canonical" href="https://carolinaloureiro.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nômade Produtora">
+<meta property="og:title" content="Nômade Produtora">
+<meta property="og:description" content="Produtora de ativos: estratégia, direção, produção executiva, audiovisual e conteúdo. Direção de Carolina Loureiro.">
+<meta property="og:url" content="https://carolinaloureiro.com/">
+<meta property="og:image" content="https://carolinaloureiro.com/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2305070B'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%234FD8D0'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<style>
+  /* ═══ Sistema Vivo ═══ mundo único, escuro por decisão. Toda cor é pintada explicitamente. */
+  :root {
+    --bg:      #05070B;
+    --ink:     #E8EDF2;
+    --soft:    #8994A2;
+    --faint:   #5A6472;
+    --cyan:    #4FD8D0;
+    --magenta: #E85A9C;
+    --coral:   #FF8A6B;
+    --edge:    rgba(79,216,208,0.16);
+    --edge-lo: rgba(79,216,208,0.09);
+
+    --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: var(--sans); font-size: 15.5px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased; margin: 0; overflow-x: hidden;
+  }
+
+  /* o organismo atravessa a página inteira, não só o topo */
+  #field { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; display: block; }
+  .topbar, .hero, section.band, footer.foot { position: relative; z-index: 1; }
+
+  .shell { max-width: 1220px; margin: 0 auto; padding: 0 clamp(18px, 4.5vw, 56px); }
+  h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+
+  /* cantos de rastreio — assinatura do sistema, repetida em toda superfície */
+  .tk { position: relative; }
+  .tk::before, .tk::after {
+    content: ""; position: absolute; width: 9px; height: 9px; opacity: 0.5;
+    border-color: var(--cyan); border-style: solid; pointer-events: none;
+  }
+  .tk::before { top: 8px; left: 8px; border-width: 1px 0 0 1px; }
+  .tk::after  { bottom: 8px; right: 8px; border-width: 0 1px 1px 0; }
+
+  /* ── barra ── */
+  .topbar { position: sticky; top: 0; z-index: 40; background: var(--bg); border-bottom: 1px solid var(--edge-lo); }
+  .topbar .shell { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 50px; }
+  .topbar .wm { font-size: 13.5px; font-weight: 500; letter-spacing: 0.07em; text-decoration: none; }
+  .topnav { display: flex; gap: clamp(11px, 1.9vw, 24px); }
+  .topnav a {
+    color: var(--faint); text-decoration: none; font-family: var(--mono);
+    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    padding-bottom: 2px; border-bottom: 1px solid transparent;
+  }
+  .topnav a:hover { color: var(--soft); }
+  .topnav a.on { color: var(--cyan); border-bottom-color: var(--cyan); }
+  @media (max-width: 820px) { .topnav { display: none; } }
+
+  /* ── hero ── */
+  .hero {
+    overflow: hidden; min-height: min(80vh, 660px);
+    display: flex; align-items: flex-end;
+    padding: clamp(24px, 5vw, 52px) 0 clamp(28px, 4.4vw, 56px);
+    border-bottom: 1px solid var(--edge);
+  }
+  .hero #cells { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; }
+  .hero .shell { position: relative; z-index: 2; width: 100%; }
+  .hero-grid { display: flex; flex-direction: column; gap: clamp(22px, 3.6vw, 42px); }
+  .mark { font-size: clamp(38px, 8.4vw, 92px); line-height: 0.94; letter-spacing: -0.035em; font-weight: 500; }
+  .mark-row { display: flex; flex-direction: column; gap: 12px; }
+  .mark-meta { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan); }
+  .hero-claim { font-size: clamp(20px, 2.9vw, 34px); line-height: 1.2; letter-spacing: -0.02em; max-width: 22ch; }
+  .hero .lede { margin: 16px 0 0; color: var(--soft); font-size: 14.5px; line-height: 1.68; max-width: 56ch; }
+  .crafts {
+    display: flex; flex-wrap: wrap; gap: 8px clamp(11px, 2vw, 22px);
+    padding-top: 16px; border-top: 1px solid var(--edge);
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint);
+  }
+
+  /* ── seções: hierarquia explícita ── */
+  section.band, footer.foot { scroll-margin-top: 50px; }
+  section.band { padding: clamp(56px, 7.5vw, 104px) 0; border-bottom: 1px solid var(--edge-lo); }
+  .band-head { margin-bottom: clamp(28px, 3.6vw, 46px); }
+  .band-top { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .band-top .num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; color: var(--cyan); font-variant-numeric: tabular-nums; }
+  .band-top .rule { flex: 1; height: 1px; background: var(--edge); }
+  .band-head h2 { font-size: clamp(30px, 4.4vw, 52px); line-height: 1.06; letter-spacing: -0.032em; font-weight: 500; }
+  .band-head .intro { margin: 18px 0 0; color: var(--soft); font-size: 14.5px; line-height: 1.68; max-width: 64ch; }
+
+  .prose { display: flex; flex-direction: column; gap: 16px; max-width: 66ch; }
+  .prose p { margin: 0; color: var(--soft); font-size: 15px; line-height: 1.72; }
+  .prose .hi { color: var(--ink); }
+  .prose .lead { color: var(--ink); font-size: 17px; line-height: 1.5; }
+
+  /* ── raio-x ── */
+  .xray { border-top: 1px solid var(--edge-lo); }
+  .xr {
+    display: grid; grid-template-columns: minmax(160px, 0.3fr) 1fr; gap: 8px clamp(20px, 4vw, 56px);
+    padding: clamp(16px, 2.1vw, 24px) 0; border-bottom: 1px solid var(--edge-lo); align-items: baseline;
+  }
+  .xr dt { font-family: var(--mono); font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--cyan); }
+  .xr dd { margin: 0; color: var(--soft); font-size: 15px; line-height: 1.6; }
+  .xr dd b { color: var(--ink); font-weight: 500; }
+  @media (max-width: 640px) { .xr { grid-template-columns: 1fr; } }
+
+  /* ── ofícios ── */
+  .offers { display: grid; grid-template-columns: repeat(auto-fit, minmax(196px, 1fr)); border-top: 1px solid var(--edge-lo); border-left: 1px solid var(--edge-lo); }
+  .offer { padding: clamp(18px, 2vw, 26px); border-right: 1px solid var(--edge-lo); border-bottom: 1px solid var(--edge-lo); display: flex; flex-direction: column; gap: 13px; }
+  .offer h3 { font-size: 16.5px; letter-spacing: -0.015em; font-weight: 500; }
+  .offer ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .offer li { font-family: var(--mono); font-size: 10px; letter-spacing: 0.03em; color: var(--soft); line-height: 1.5; display: flex; gap: 8px; }
+  .offer li::before { content: ""; width: 3px; height: 3px; border-radius: 50%; background: var(--cyan); opacity: 0.6; flex: none; margin-top: 5px; }
+
+  /* ── trabalhos ── */
+  .tw { overflow-x: auto; border-top: 1px solid var(--edge); }
+  table.index { width: 100%; min-width: 760px; border-collapse: collapse; }
+  table.index th {
+    text-align: left; font-weight: 400; padding: 11px 14px 11px 0;
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--cyan); border-bottom: 1px solid var(--edge-lo); white-space: nowrap;
+  }
+  table.index td { padding: 14px 14px 14px 0; border-bottom: 1px solid var(--edge-lo); vertical-align: top; }
+  table.index tr:hover td { background: rgba(79,216,208,0.04); }
+  td.yr { font-family: var(--mono); font-size: 10px; color: var(--cyan); white-space: nowrap; font-variant-numeric: tabular-nums; width: 1%; }
+  td.wk { color: var(--ink); font-size: 14px; line-height: 1.5; min-width: 280px; }
+  td.wk a { text-decoration: none; border-bottom: 1px solid var(--edge); }
+  td.wk a:hover { color: var(--cyan); border-bottom-color: var(--cyan); }
+  td.wk a::after { content: " ↗"; color: var(--cyan); font-size: 0.82em; }
+  td.fr { font-family: var(--mono); font-size: 9px; letter-spacing: 0.06em; color: var(--soft); text-transform: uppercase; line-height: 1.7; white-space: nowrap; }
+  td.ct { font-size: 13px; color: var(--faint); line-height: 1.5; }
+  .scrollhint { margin: 10px 0 0; font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); }
+  @media (min-width: 900px) { .scrollhint { display: none; } }
+
+  /* ── direção ── */
+  .dir { display: grid; grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 60px); align-items: start; }
+  .portrait { padding: 10px; }
+  .portrait img { display: block; width: 100%; height: auto; }
+  .dir-body { display: flex; flex-direction: column; gap: 15px; }
+  .dir-body h3 { font-size: clamp(21px, 2.6vw, 29px); letter-spacing: -0.026em; font-weight: 500; }
+  .dir-body p { margin: 0; color: var(--soft); font-size: 14.5px; line-height: 1.72; max-width: 60ch; }
+  .dir-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 16px; padding-top: 18px; margin-top: 4px; border-top: 1px solid var(--edge-lo); }
+  .dir-meta div { display: flex; flex-direction: column; gap: 6px; }
+  .dir-meta .k { font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); }
+  .dir-meta .v { color: var(--soft); font-size: 13px; line-height: 1.55; }
+  @media (max-width: 760px) { .dir { grid-template-columns: 1fr; } .portrait { max-width: 300px; } }
+
+  /* ── marcas ── */
+  .logos { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--edge-lo); border-left: 1px solid var(--edge-lo); }
+  @media (min-width: 560px) { .logos { grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 900px) { .logos { grid-template-columns: repeat(7, 1fr); } }
+  .logo { min-height: 88px; padding: 16px 12px; border-right: 1px solid var(--edge-lo); border-bottom: 1px solid var(--edge-lo); display: flex; align-items: center; justify-content: center; text-align: center; }
+  .logo .lg { display: flex; align-items: center; justify-content: center; width: 100%; }
+  .logo .lg svg { width: auto; height: auto; max-width: 100%; max-height: var(--h, 28px); display: block; opacity: .9; }
+  .topnav a.ext { color: var(--cyan); }
+  .also { margin-top: 20px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 5px clamp(9px, 1.4vw, 14px); font-family: var(--mono); font-size: 10px; letter-spacing: 0.05em; color: var(--faint); line-height: 1.9; }
+  .also em { font-style: normal; color: var(--cyan); opacity: 0.55; }
+
+  /* ── contato ── */
+  .foot { padding: clamp(56px, 7vw, 96px) 0 clamp(30px, 4vw, 48px); }
+  .foot h2 { font-size: clamp(26px, 3.6vw, 44px); letter-spacing: -0.03em; line-height: 1.12; margin-bottom: 28px; font-weight: 500; }
+  .contacts { display: grid; grid-template-columns: repeat(auto-fit, minmax(195px, 1fr)); gap: 20px clamp(18px, 2.6vw, 38px); padding-top: 22px; border-top: 1px solid var(--edge); }
+  .contacts div { display: flex; flex-direction: column; gap: 7px; }
+  .contacts .k { font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); }
+  .contacts a { font-size: 14.5px; text-decoration: none; border-bottom: 1px solid var(--edge); padding-bottom: 2px; width: fit-content; max-width: 100%; overflow-wrap: anywhere; }
+  .contacts a:hover, .contacts a:focus-visible { color: var(--cyan); border-bottom-color: var(--cyan); }
+  .colophon { margin-top: clamp(34px, 4.6vw, 58px); padding-top: 18px; border-top: 1px solid var(--edge-lo); display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); }
+
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<canvas id="field" aria-hidden="true"></canvas>
+
+<div class="topbar">
+  <div class="shell">
+    <a class="wm" href="#topo">NÔMADE</a>
+    <nav class="topnav">
+      <a href="#nomade">A Nômade</a>
+      <a href="#raiox">Raio-X</a>
+      <a href="#oficios">Ofícios</a>
+      <a href="#trabalhos">Trabalhos</a>
+      <a href="galeria/">Galeria</a>
+      <a href="#direcao">Direção</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero" id="topo">
+  <canvas id="cells" aria-hidden="true"></canvas>
+  <div class="shell">
+    <div class="hero-grid">
+      <div class="mark-row">
+        <span class="mark-meta">Produtora · São Paulo · Brasil</span>
+        <h1 class="mark">NÔMADE</h1>
+      </div>
+      <div>
+        <h2 class="hero-claim">Entre a intenção e a forma, existe uma infraestrutura.</h2>
+        <p class="lede">A Nômade opera nesse intervalo. É o mecanismo que capta o que o projeto ainda não sabe dizer e estrutura isso até que a coisa exista no mundo material, com integridade estética e comercial.</p>
+      </div>
+      <div class="crafts">
+        <span>Roteiro</span><span>Direção</span><span>Produção Executiva</span><span>Fotografia</span>
+        <span>Edição</span><span>Eventos</span><span>Documentário</span><span>Tradução</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ 01 A NÔMADE ═══ -->
+<section class="band" id="nomade">
+  <div class="shell">
+    <div class="band-head">
+      <div class="band-top"><span class="num">01</span><span class="rule"></span></div>
+      <h2>A Nômade</h2>
+    </div>
+    <div class="prose">
+      <p class="lead">Chamam a Carol quando ainda não se sabe o que pedir.</p>
+      <p>Uma produtora de ativos, não uma agência. A direção é o núcleo fixo, e a equipe é modular: monta-se a cada trabalho com a exatidão do que aquele projeto exige. Quem contrata conversa com uma única mente, do caos do primeiro rascunho à precisão da última entrega.</p>
+      <p>A Nômade é a consolidação de mais de quinze anos transitando entre o palco, o set de filmagem, a redação e a gestão pública. Tempo suficiente para descobrir que a parte mais difícil de um projeto quase nunca é a execução mecânica. A parte difícil é <span class="hi">auditar a intenção</span>: organizar variáveis que estão espalhadas entre pessoas que não usam as mesmas palavras, dentro de um objetivo que ninguém formulou direito. Recolher esse material subjetivo, aplicar rigor técnico e devolver algo que se sustente sozinho — esse é o trabalho.</p>
+      <p>O ofício se forjou na fricção entre mundos distintos. <span class="hi">Trocar de código sem perder a excelência e o cuidado é a nossa verdadeira entrega.</span> A Nômade calibra a velocidade e a densidade de cada processo para que a obra final seja irretocável, adaptando a engrenagem exatamente ao que o terreno exige.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 02 RAIO-X ═══ -->
+<section class="band" id="raiox">
+  <div class="shell">
+    <div class="band-head">
+      <div class="band-top"><span class="num">02</span><span class="rule"></span></div>
+      <h2>Raio-X</h2>
+      <p class="intro">Escala e volume.</p>
+    </div>
+    <dl class="xray">
+      <div class="xr"><dt>Gestão de volume</dt><dd>Mais de <b>900 vídeos</b> idealizados, produzidos e editados.</dd></div>
+      <div class="xr"><dt>Audiovisual &amp; emissoras</dt><dd>Coordenação operacional de comunicação e gestão de fluxo de trabalho para emissoras de TV de alcance nacional.</dd></div>
+      <div class="xr"><dt>Ao vivo &amp; streaming</dt><dd>Direção de estúdios e coordenação audiovisual de eventos globais e transmissões online.</dd></div>
+      <div class="xr"><dt>Atendimento corporativo</dt><dd>Mais de uma década operando projetos contínuos para marcas de esporte, entretenimento e bens de consumo.</dd></div>
+      <div class="xr"><dt>Idiomas de operação</dt><dd>Projetos conduzidos e estruturados em <b>Português, Inglês, Italiano e Espanhol</b>.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ═══ 03 OFÍCIOS ═══ -->
+<section class="band" id="oficios">
+  <div class="shell">
+    <div class="band-head">
+      <div class="band-top"><span class="num">03</span><span class="rule"></span></div>
+      <h2>Ofícios</h2>
+    </div>
+    <div class="offers">
+      <article class="offer tk"><h3>Estratégia</h3><ul><li>Posicionamento e tom de voz</li><li>Diretriz narrativa</li><li>Consultoria de comunicação</li></ul></article>
+      <article class="offer tk"><h3>Direção</h3><ul><li>Direção criativa</li><li>Direção de cena e de palco</li><li>Roteiro e estrutura</li></ul></article>
+      <article class="offer tk"><h3>Produção Executiva</h3><ul><li>Orçamento e cronograma</li><li>Equipe e fornecedores</li><li>Execução em campo</li></ul></article>
+      <article class="offer tk"><h3>Audiovisual</h3><ul><li>Captação e edição</li><li>Finalização e pós</li><li>Fotografia de cena</li></ul></article>
+      <article class="offer tk"><h3>Conteúdo</h3><ul><li>Editorial e curadoria</li><li>Redes e plataforma</li><li>Adaptação e tradução</li></ul></article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 04 TRABALHOS ═══ -->
+<section class="band" id="trabalhos">
+  <div class="shell">
+    <div class="band-head">
+      <div class="band-top"><span class="num">04</span><span class="rule"></span></div>
+      <h2>Trabalhos</h2>
+      <p class="intro">O registro do que foi feito. Onde há material publicado, o título abre a peça.</p>
+    </div>
+    <div class="tw">
+      <table class="index">
+        <thead><tr><th>Ano</th><th>Trabalho</th><th>Ofício</th><th>Contexto</th></tr></thead>
+        <tbody>
+          <tr><td class="yr">2026</td><td class="wk">Lançamento institucional de um fundo de impacto, do roteiro de palco ao vídeo manifesto</td><td class="fr">Estratégia<br>Produção Executiva</td><td class="ct">Fundo Regenera</td></tr>
+          <tr><td class="yr">2025</td><td class="wk"><a href="https://www.instagram.com/p/DNWArPvxCIi/" target="_blank" rel="noopener noreferrer">Gestão de marca 360° para artista nacional</a></td><td class="fr">Estratégia<br>Conteúdo</td><td class="ct">Guito · 13 peças</td></tr>
+          <tr><td class="yr">2025</td><td class="wk"><a href="https://www.instagram.com/p/DS2PDKMgHmq/" target="_blank" rel="noopener noreferrer">Cobertura e reels de lançamento editorial</a></td><td class="fr">Audiovisual</td><td class="ct">Kipuka · 8 peças</td></tr>
+          <tr><td class="yr">2025</td><td class="wk"><a href="https://www.instagram.com/p/DR5YOVfETWg/" target="_blank" rel="noopener noreferrer">Cobertura de CCXP e do lançamento Megafauna</a></td><td class="fr">Audiovisual</td><td class="ct">Mina de HQ · 5 peças</td></tr>
+          <tr><td class="yr">2025</td><td class="wk"><a href="https://www.instagram.com/p/DHPL0O0Sg4C/" target="_blank" rel="noopener noreferrer">Reels de feira e ativação de marca</a></td><td class="fr">Audiovisual</td><td class="ct">Expo Revestir · 5 peças</td></tr>
+          <tr><td class="yr">2025</td><td class="wk">Produção executiva e direção técnica de shows de música árabe</td><td class="fr">Produção Executiva</td><td class="ct">Grupo Nahawand · Sesc · UNESP</td></tr>
+          <tr><td class="yr">2025</td><td class="wk">Coordenação geral de estande e posicionamento de marca em feira</td><td class="fr">Produção Executiva</td><td class="ct">Cycles · Feira Natural Tech</td></tr>
+          <tr><td class="yr">2024—25</td><td class="wk">Assistência de direção e fotografia de um longa-metragem documental</td><td class="fr">Direção<br>Audiovisual</td><td class="ct">Núcleo TUSP / USP · <em>As Bacantes</em></td></tr>
+          <tr><td class="yr">2024—25</td><td class="wk"><a href="https://irdesieducacao.com.br/" target="_blank" rel="noopener noreferrer">Curso online de nove módulos para formação de educadores inclusivos</a></td><td class="fr">Conteúdo<br>Produção Executiva</td><td class="ct">IRDESI CAMPI</td></tr>
+          <tr><td class="yr">2024</td><td class="wk"><a href="https://www.instagram.com/p/C2QbaTwuzMR/" target="_blank" rel="noopener noreferrer">Conteúdo de marca para rede de alimentação</a></td><td class="fr">Audiovisual</td><td class="ct">Terrinha · 4 peças</td></tr>
+          <tr><td class="yr">2023—25</td><td class="wk"><a href="https://www.youtube.com/watch?v=Tdtq-tcCP2I&amp;list=PLVwNANcUXyA8UCF5BWI3lwIHnuO8pII8W" target="_blank" rel="noopener noreferrer">Direção do programa <em>Saber Direito</em> e comunicação institucional</a></td><td class="fr">Direção<br>Conteúdo</td><td class="ct">FUNDAC / TV Justiça · STF</td></tr>
+          <tr><td class="yr">2023—24</td><td class="wk">Fluxos operacionais, padrões técnicos de conteúdo e campanhas multinicho em inglês</td><td class="fr">Estratégia<br>Conteúdo</td><td class="ct">DeFrance Digital</td></tr>
+          <tr><td class="yr">2022—23</td><td class="wk">Gestão de produção e implantação de plataforma de streaming e EAD</td><td class="fr">Produção Executiva</td><td class="ct">TV Escola · ACERP</td></tr>
+          <tr><td class="yr">2021—23</td><td class="wk"><a href="https://www.cvglobal.co/en/videos/71273" target="_blank" rel="noopener noreferrer">Direção de entrevistas, conteúdo documental e eventos globais online</a></td><td class="fr">Direção<br>Conteúdo</td><td class="ct">Christian Vision</td></tr>
+          <tr><td class="yr">2013—23</td><td class="wk"><a href="https://www.youtube.com/@canalchua" target="_blank" rel="noopener noreferrer">Canal de basquete mantido por uma década, do roteiro à edição</a></td><td class="fr">Direção<br>Audiovisual</td><td class="ct">Canal Chuá · 900+ vídeos</td></tr>
+          <tr><td class="yr">2013—23</td><td class="wk">Campanhas, coberturas e ativações para marcas esportivas e de consumo</td><td class="fr">Produção Executiva<br>Audiovisual</td><td class="ct">Máfia Produtora</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollhint">Arraste a tabela para o lado →</p>
+
+    <div style="margin-top:clamp(38px,5vw,60px);">
+      <div class="logos">
+        <div class="logo"><span class="lg" style="--h:34px"><svg role="img" aria-label="Adidas" fill="#FFFFFF" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m24 19.535-8.697-15.07-4.659 2.687 7.145 12.383Zm-8.287 0L9.969 9.59 5.31 12.277l4.192 7.258ZM4.658 14.723l2.776 4.812H1.223L0 17.41Z"/></svg></span></div>
+        <div class="logo"><span class="lg" style="--h:40px"><svg role="img" aria-label="NBA" fill="#FFFFFF" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.19 0a2.486 2.486 0 0 0-2.485 2.484v19.029A2.488 2.488 0 0 0 9.19 24h5.615a2.493 2.493 0 0 0 2.49-2.487V2.484A2.488 2.488 0 0 0 14.81 0zm0 .584h3.21c-.62.237-.707.508-.73 1.366-.105.01-.325-.087-.25.434 0 0 .043.346.18.286-.133.918.023.99-.93 1.031l-.047.067c-.95.093-1.25-.027-2.05 1.603 0 0-.207.505-.268.714-.197.415-.674 1.328-.819 1.919-.046.2-.14.264-.01.553.185.417-.124.527.95.496V9.3s-.286.247-.346.398c-.061.147-.226.89-.22 1.237.019.917.767 1.683.992 2.597l.492.07c.282.634 1.495 2.355 1.743 2.582.057.159.365.355.545.551.149.141 1.025 1.1 2.054 1.692-.007-.001.164.344.249.618-.342.275.32.777.52 1.609.012.107-.19.222.114.495-.022 1.256-.402 1.918.241 2.266H9.191a1.9 1.9 0 0 1-1.9-1.901V2.486a1.9 1.9 0 0 1 1.9-1.902zm3.804.002h1.815a1.9 1.9 0 0 1 1.897 1.898v9.193a1.653 1.653 0 0 0-.22-.397c0-.255-.272-.249-.346-.344-.07-.081.067-.128-.407-.235-.09-.05-.158-.747-.158-.747-.07-.447-.229-.754-.467-1.227-.12-.243-.177-1.001-.305-1.386.071-1.767-.493-2.28-.95-2.569-.174-.11-.262-.191-.433-.29l-.005-.082c-.133-.126-.402-.264-.623-.362-.068-.07-.037-.22.01-.276.15-.02.348-.356.513-.703.129.009.174-.118.214-.19.138-.222.288-.413.096-.542.435-.777.154-1.301-.08-1.321-.095-.195-.26-.316-.551-.42zm.551 6.338c.06.319.34 1.929.456 2.187.123.259.535 1.05.73 1.54a1.69 1.69 0 0 0-1.294 1.646 1.692 1.692 0 0 0 1.693 1.691 1.692 1.692 0 0 0 1.576-1.066v8.59a1.887 1.887 0 0 1-1.598 1.877h-.017c.833-.502.319-1.46.16-2.022-.012-.033.014-.074.026-.1.045-.08-.045-.257-.045-.257-.098-.09-.127-.561-.182-.772-.089-.358.157-.971.157-1.18 0-.206-.156-.491-.445-.858-.069-.078-.276-1.86-.462-2.313-.258-.623-.339-.526-.64-1.266-.24-.525-.055-1.295-.59-3.085.005.006.12-.113.12-.113s-.422-1.55-.561-1.975c-.14-.426-.385-.456-.385-.456s.002-.172.012-.216c.02-.07.516-1.367.558-1.407.001-.03.717-.514.731-.445Z"/></svg></span></div>
+        <div class="logo"><span class="lg" style="--h:40px"><?xml version="1.0" encoding="utf-8"?> <svg role="img" aria-label="NBB" fill="#FFFFFF" version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 5000 5000" xml:space="preserve"> <g> <g> <path d="M1957.5,453.9h-275.8l-129.5,786l-57.2-637.3c-10.9-75.7-69.3-136.5-142.7-148.6h-8.4H705L293.8,2949.6 c-17.6,105.6,63.9,201.8,170.9,201.8h274.8l128.1-780l55.9,635.1c13.9,83.6,86.2,144.8,170.9,144.8h624.4l409.5-2495.6 C2146,550.1,2064.6,453.9,1957.5,453.9"/> <path d="M2608.4,2018.1l-115.8,703.2h133.2c87.9,0,140.1-50.7,156.8-152.2l65.7-398.8c12.1-73.6-8.3-121.2-61.2-142.8 c-14.2-6.3-45.1-9.4-92.6-9.4H2608.4z M2795.1,883.9L2679.4,1587h86.1c48.4,0,80.2-2.7,95.5-8.1c60.2-22.4,96.3-70.5,108.5-144.2 l65.4-397.3c16.9-102.4-18.6-153.6-106.5-153.6H2795.1z M2418,454.2h620.1c360.3,0.9,508.5,195.3,444.6,583.3l-65.4,397.3 c-30.2,183.2-110.4,305.8-240.8,367.8c109.9,61.9,149.8,184.5,119.7,367.7l-65.7,398.8c-63.7,387-283.5,581-659.4,581.9H1974 L2418,454.2z"/> <path d="M3998.6,2018.1l-115.8,703.2h133.1c87.9,0,140.2-50.7,156.9-152.2l65.7-398.8c12.1-73.6-8.3-121.2-61.3-142.8 c-14.2-6.3-45.1-9.4-92.6-9.4H3998.6z M4185.4,883.9L4069.6,1587h86.1c48.4,0,80.2-2.7,95.5-8.1c60.2-22.4,96.4-70.5,108.5-144.2 l65.4-397.3c16.9-102.4-18.7-153.6-106.6-153.6H4185.4z M3808.2,454.2h620.1c360.3,0.9,508.6,195.3,444.7,583.3l-65.4,397.3 c-30.2,183.2-110.5,305.8-240.8,367.8c110,61.9,149.9,184.5,119.7,367.7l-65.7,398.8c-63.7,387-283.6,581-659.4,581.9h-597.2 L3808.2,454.2z"/> </g> <path d="M1597.1,1615.2c-3.2-10.4,0-9.9-7.7-57.2c-7.7-47.3-30.2-57.6-39.2-78.4c-9-20.7-1.8-41-15.3-64.4 c-13.5-23.4-30.6-34.2-62.1-34.7c-31.5-0.5-80.2-17.1-80.6-19.8c-0.5-2.7-5-17.1-1.8-32.4c3.2-15.3,28.4-20,34.2-24.8 c5.7-4.7,6.8-48.6,6.3-58.5c-0.4-9.9-7.2-23.4-7.2-23.4s7.1-5.2,8-10.3c1.3-7.1-26-23-26-23c-4.5-50.9-42.5-58.7-61-59.2 c-18.5-0.5-55.2,2.4-87.2,27.2c-32,24.8-28.9,84.6-13.5,108.1c11.1,16.9,16.7,45.5,14.4,46.8c-2.2,1.4-28.4-26.1-28.4-26.1 c-29.3-31.5-35.1-19.4-62.6-42.3c-27.5-23-8.1-17.1-38.7-62.6c-30.6-45.5-64-61.7-73-74.3c-9-12.6-111.2-205.4-111.2-205.4 s5.9-6.3,7.7-15.8c0.1-0.8,0.3-1.5,0.6-2.2c22.6,19.8,52.3,31.8,84.7,31.8c71.1,0,128.7-57.6,128.7-128.7 c0-71.1-57.6-128.7-128.7-128.7c-48.6,0-90.9,27-112.8,66.7c0.6-2.6-6.8-7.5-8.1-3.5c-2.7,8.3-8.6,31.1-11.1,41.1 c-5.8,23-9,34.7-9.9,54c-0.9,19.4,1.4,74.8,1.4,83.8c0,9,14.9,75.7,25.7,122.5c10.8,46.8,17.1,59.4,38.3,85.6 c21.2,26.1,36.9,56.3,49.5,85.1c12.6,28.8,57.2,103.1,71.2,128.4s39.6,60.8,46.8,79.3c7.2,18.5,6.3,28.6-5.9,54.9 c-11.3,24.5-4.4,23,5,38.7c5.6,9.4,9,40.1,7.2,74.8c-1.8,34.7-25.7,139.6-45.9,168.9c-0.3,0.4-0.5,0.7-0.7,1.1 c-4.4,5.4-7.8,11.6-9.6,17.9c-3.5,9.5-2,14.6-0.7,16.9c0.2,0.8,2.6,6.7,2.9,7.5c-1.8,3.7-6.9,15.8-17.6,64.5 c-12.6,57.2-17,145.7-17.4,153.8c-0.6,11.4,0.3,24.6,9,36c5.4,7.1,15.8,18,15.8,18c-21.6,8.6-27,26.1-29.3,50 c-2.3,23.9-24.8,93.2-24.8,93.2c-16.3,0.8-27,37.4-32,73.4c-5,36-22.1,96.8-21.2,123.4c0.9,26.6,18.3,50.3,35.1,58.1 c13.4,6.2,39.6,7.8,51.4,0c9.8-6.5,21.1-24.3,22.9-42.8c1.8-18.5-5.4-35.1-5.8-50.4c-0.5-15.3,23-123.9,30.6-145.5 c7.7-21.6,49.5-54.5,63-64.4c13.5-9.9,35.1-48.2,35.1-48.2c2.7,29.7-3.6,74.3,2.2,89.2c5.9,14.9,29.3,56.7,32.4,65.3 c3.2,8.6,27.5,78.4-2.7,152.2c-30.2,73.9-8.6,82-9,124.8c-0.4,42.8-26.1,163-26.1,163c-12.2-3.2-44.6,38.7-44.6,38.7 c-28.4,4.5-31.4,20.7-27.9,35.6c6.3,26.9,27,52.7,38.3,61.7c11.3,9,18.5,14,15.3,29.3c-3.2,15.3-10.4,30.6,3.6,57.2 c14,26.6,66.2,33.8,82,29.7c15.8-4.1,11.7-28.4,9-46.8c-2.7-18.5-14.9-119.8-14.9-124.3c0-4.5,14-36.5,14.4-42.3 c0.4-5.9-5.4-11.3-5.4-11.3c0.9-8.6,62.1-175.6,72.1-222.5c9.9-46.8,24.8-134.7,26.1-156.7c1.4-22.1,10.4-56.3,10.4-56.3 s22.1,7.2,24.3,5.4c2.2-1.8,1.4-15.3,7.7-37.4c6.3-22.1,28.9-117,27.9-141.3c-1-24.3,6.1-60.8,0-91.2c-6.1-30.4-3.9-52.2-3.9-58.1 c0-5.9-4.4-31.9-4.4-51c0-19.1-8.4-40.8-8.4-40.8c18-1.4,24.8-9.9,24.8-13.1s0.5-8.6,2.7-28.4c2.2-19.8,5.4-36.9,2.2-78.4 c-3.1-41.4,12.6-94.1,12.6-94.1s45.5,6.3,61.7,2.7c16.2-3.6,47.3-21.6,54.9-26.6C1580.4,1629.2,1600.2,1625.6,1597.1,1615.2"/> <g> <polygon points="2210.1,4533.6 2608.6,4533.6 3045.4,4096.8 2646.9,4096.8 "/> <polygon points="3128.1,3615.7 2955.3,3788.5 3089.8,4052.5 3526.6,3615.7 "/> <polygon points="2009.2,3615.7 2342.6,3615.7 2197,4533.6 1863.6,4533.6 "/> <path d="M1140.1,4533.6H787.6l464.2-918h368.8l182.6,918h-353.4l-12.6-114.5h-252L1140.1,4533.6z M1416.2,4201.8 l-16.3-168.3c-3.9-39.7-2.1-99.4-1.4-141.9h-13.6l-114.3,310.2h143H1416.2z"/> <polygon points="2468.7,3615.6 2867.1,3615.5 3089.8,4052.5 2691.3,4052.5 "/> <path d="M3633,4533.6h-352.5l464.2-918h368.8l182.6,918h-353.3l-12.6-114.5h-252.1L3633,4533.6z M3909.1,4201.8 l-16.3-168.3c-3.9-39.7-2.1-99.4-1.4-141.9h-13.7l-114.2,310.2h143H3909.1z"/> <path d="M838.9,3987.4c-45.1-49.5-105.8-92.4-181-92.4c-99.9,0-193.8,79.1-210,178.8 c-15.6,101.3,58.4,178.9,158.2,178.9c76.8,0,142.6-32.5,204.7-84.9l-64.3,343.6c-45.7,19.9-133.8,31-198.4,34.8h-82.9 c-240-18.7-393.8-214.7-354.5-463.4c42.2-268,286.3-482.2,554.9-482.7h4.5c74.2,0.4,149,14.4,214.4,37.7L838.9,3987.4z"/> <polygon points="2781.5,4360.8 3045.4,4096.8 3268,4533.6 2869.5,4533.6 "/> </g> </g> </svg></span></div>
+        <div class="logo"><span class="lg" style="--h:26px"><svg role="img" aria-label="ESPN" fill="#FFFFFF" viewBox="0 0 554 137" xmlns="http://www.w3.org/2000/svg"><path d="M181.064.348c-20.608-.027-34.256 10.836-36.176 27.079a1600.065 1600.065 0 0 1-1.384 11.257H411.64s.504-3.957.896-7.133C414.552 15.188 407.6.35 382.312.35v.002S191.928.36 181.064.348zM17.424.353l-4.706 38.331h121.6l4.688-38.33H17.422h.002zm408.184 0l-4.696 38.331h131.824s.16-1.386.744-5.898C556.688 7.626 540.456.353 524.784.353h-99.176zm-6.512 52.926l-10.272 83.656 45.48-.016 10.28-83.624-45.488-.018v.002zm86.4 0l-10.288 83.656 45.48-.016 10.28-83.624-45.472-.018v.002zm-494.552.012L.654 136.939h121.592l4.48-36.288-76.138-.008 1.926-15.648h76.108l3.896-31.702H10.95l-.006-.002zm130.776 0c-3.336 21.832 7.592 31.701 23.08 31.701 8.424 0 61.52-.024 61.52-.024l-1.92 15.672-88.488.008-4.456 36.288s96.336.032 100.24 0c3.224-.232 25.76-.848 33.432-19.28 2.488-5.984 4.688-27.44 5.304-31.944 3.544-26.16-14.568-32.397-28.832-32.397-7.864 0-84.352-.024-99.88-.024zm141.552 0L273 136.939h45.456l6.4-51.944h57.096c16.192 0 24.896-8.706 26.512-20.397a430.97 430.97 0 0 0 1.4-11.305H283.272v-.002z"/></svg></span></div>
+        <div class="logo"><span class="lg" style="--h:30px"><svg role="img" aria-label="Budweiser" fill="#FFFFFF" version="1.1" id="Layer_1" xmlns:x="ns_extend;" xmlns:i="ns_ai;" xmlns:graph="ns_graphs;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 308.8 100" xml:space="preserve"> <g id="Layer_1_1_"> </g> <g id="GUIDES"> <path d="M308.8,0l-64.5,99.8L123.1,75.8L0,95.4l33.2-51.3c1.1,0.6,2.3,1.1,3.8,1.3L8.2,90.1l115.1-18.3l119.1,23.5 l25-38.7h0.2c2.1,0,3.8-0.8,4.6-1.5l-0.8-1.7l-1.5-1.1l30.3-46.8L148.5,35.1c1.1-1.9,2.1-3.6,2.7-4.6L308.8,0z M210.1,38.9 c1.9,0,3.4-1.9,3.4-3.8c0-1.7-1.1-2.3-2.3-2.3c-2.1,0-3.6,2.1-3.6,3.8C207.6,37.8,208.4,38.9,210.1,38.9z M44.1,25.6 c0.2,0,0.6,0,0.8,0h0.2l16-24.4l81.1,31.1c0.2-0.2,0.2-0.4,0.4-0.6c1.1-1.9,1.9-3.2,1.9-3.2l6.1-0.4c-4.4,7.4-12.8,21-13.4,22.1 c-3.6,6.1-5.3,9-5.3,10.7c0,0.6,0.2,1.1,0.8,1.1c1.9,0,5.9-2.9,13.9-13c0.6-0.8,2.5-3.6,3.4-4.6l5.7-0.2 c-3.2,4.8-7.6,11.3-9.5,14.7c-0.8,1.3-1.3,2.1-1.3,2.5c0,0.6,0.4,0.8,0.8,0.8c2.1,0,6.3-3.4,12.2-11.8c1.5-2.1,2.5-3.8,4-5.9 l5.7-0.2c-1.7,2.5-4.8,7.8-5.3,8.4c-2.7,4.4-4.2,7.1-4.2,8.4c0,0.6,0.2,1.1,1.1,1.1c4.2,0,9.9-7.6,11.3-11.6c0-2.7,0.4-5,1.5-6.3 c0.4-0.6,1.1-1.3,2.3-1.3c0.8,0,1.5,0.4,1.5,1.1c0,1.1-1.3,4-3.4,7.6c0.6,1.5,1.9,2.3,3.4,2.7c2.3-4.2,7.6-11.1,14.5-11.1 c2.5,0,3.6,0.8,3.6,2.7c0,3.6-5.5,8.6-13,9.7c-0.6,1.3-1.3,2.7-1.3,4.2c0,1.3,0.6,2.3,2.5,2.3c6.1,0,13.4-9.2,17.4-14.5 c0.2-0.4,1.9-2.5,2.3-3.2l5.7-0.4c-4.8,7.6-6.3,10.1-6.3,10.1c-1.5,2.5-3.4,5.7-3.4,6.7c0,0.6,0.4,1.1,1.1,1.1 c2.3,0,6.5-3.8,12.4-9.9c2.5-2.5,5.3-5.5,7.1-7.6c0.6-2.3,1.9-3.4,3.4-3.4c1.3,0,1.7,0.6,1.7,1.7c0,1.3-1.1,2.1-2.1,2.3 c0,0.2,0,0.6,0,1.1c0,2.3,0.2,4,0.2,6.5c0,2.3-0.4,4.4-1.7,6.5c2.9-2.3,8.8-8,12.4-11.1c3.6-3.4,7.1-4.6,9.9-4.6 c2.3,0,3.6,0.8,3.6,2.7c0,4.6-7.8,9-13,9.7c-0.6,1.1-1.3,2.9-1.3,4.4c0,1.3,0.8,2.1,2.1,2.1c4.2,0,8.4-4.4,11.8-8.4 c5.3-6.5,7.6-10.1,11.6-10.1c2.1,0,3.2,1.1,3.2,2.5c0,1.9-0.8,3.6-2.7,6.9c6.1-7.8,9-9.5,11.1-9.5c1.5,0,2.5,0.8,2.5,1.9 c-2.1,0.6-4.2,3.6-4.2,5.7c0,0.6,0.2,1.1,0.4,1.5c0.2,0.2,0.6,0.4,1.3,0.4s1.3-0.2,2.1-0.6l0.4,1.1c-1.1,0.6-2.1,0.8-3.6,0.8 c-2.7,0-4.2-1.3-4.2-3.4c0-1.3,0.6-2.7,1.5-4c-3.6,3.2-10.9,12.6-13.4,16.8l-5.7,0.2c0.8-1.3,5.7-8.4,9-14.3 c1.1-1.9,1.7-2.7,1.7-3.6c0-0.4-0.2-0.6-0.6-0.6c-1.9,0-4.8,3.8-8.8,8.8c-2.9,3.8-8.2,10.1-15.1,10.1c-3.6,0-5.3-1.9-5.3-4.4 c0-2.3,0.8-4.4,2.1-6.3c-1.7,1.5-3.4,2.9-5,4.4c-3.2,2.9-7.4,6.3-13,6.3c-2.9,0-4.6-1.3-4.6-2.7c0-0.8,0.6-1.5,1.3-1.5 c1.9,0,1.3,2.7,3.8,2.7c2.9,0,5.3-2.7,6.7-11.1c0.2-1.1,0.6-3.4,1.1-4.8c-4.4,4.6-7.6,7.8-8.8,9.2c-3.8,3.8-8.2,8-12.4,8 c-2.3,0-3.8-1.3-3.8-3.2c0-1.3,0.6-2.9,2.1-5.9c-3.4,3.6-8.6,9-15.1,9c-3.8,0-5.5-1.9-5.5-4.6c0-1.3,0.4-2.7,1.1-4.2 c-1.5-0.4-2.7-1.3-3.6-2.5c-1.7,2.7-3.8,5.5-6.7,8c-2.9,2.7-5.7,3.6-8,3.6s-3.8-1.1-3.8-3.2c0-1.5,0.8-3.2,1.5-4.6 c-3.2,3.8-7.1,7.8-11.6,7.8c-1.9,0-3.6-0.8-3.6-3.2c0-1.5,0.8-2.9,2.1-5.3c-2.7,2.9-7.1,8.4-12.2,8.4c-2.3,0-3.6-1.3-3.6-3.2 c0-1.7,0.8-3.4,1.5-4.6c-0.6,0.8-1.3,1.5-1.7,2.1c-3.6,4-6.5,5.7-9.7,5.7c-2.3,0-3.8-1.3-3.8-3.6c0-1.1,0.4-2.5,0.8-3.6 c-3.4,3.6-7.1,7.1-11.3,7.1c-2.3,0-3.4-1.3-3.4-2.9c0-1.1,0.4-2.3,1.3-4L99.4,59c-2.9,2.9-6.5,5.5-9.9,5.5c-2.1,0-3.6-1.1-3.6-3.2 c0-1.5,1.1-4,3.8-7.8L88,55.3c-8.4,8-16.8,12.8-25.8,12.8c-6.7,0-8.8-2.9-8.8-6.5c0-0.8,0.2-1.7,0.2-1.7l-1.3,1.5 c-3.4,4.2-5.9,6.5-9.2,6.5c-2.7,0-5-1.3-5-3.8c0-1.5,0.8-2.9,1.9-4.8c2.3-3.8,8.6-13,13.2-19.7c-2.9,1.9-7.1,3.4-12.6,3.4 c-7.8,0-11.6-3.2-11.6-7.8C28.8,29.8,34.5,25.8,44.1,25.6z M233.2,54.4c4.4-0.6,9.9-5.3,9.9-8.6c0-0.6-0.2-1.1-0.8-1.1 C239.7,45,236.6,48.3,233.2,54.4z M181.7,54.4c4.4-0.6,9.9-5,9.9-8.6c0-0.6-0.4-1.1-1.1-1.1C187.8,45,184.5,49.6,181.7,54.4z M57.6,50.4c4.2-6.1,8.4-12.6,11.1-16.6c-1.3-0.6-2.5-1.3-3.6-1.9C63.7,33.8,46.2,59.7,45,61.8c-1.1,1.7-1.3,2.5-1.3,2.9 s0.2,0.8,0.8,0.8c0.6,0,1.5-0.4,2.5-1.3C49.6,62.2,52.9,57.4,57.6,50.4z M66,44.7l1.3-2.1c4,0,7.1,0,9.2-1.1c5-2.3,7.6-8,7.6-10.7 c0-1.9-0.8-3.6-3.4-3.6c-3.8,0-7.4,3.8-9.5,6.5c1.9,1.1,3.4,2.1,4.2,2.9l-0.6,1.1c-1.3-1.1-2.7-1.9-4.2-2.9 c-2.5,3.2-8,11.8-11.8,17.2c2.5-1.7,5.7-2.1,7.8-2.1v1.5c-7.4,0.2-11.8,5-11.8,10.1c0,2.7,1.5,4.6,5.5,4.6 c9.2,0,15.3-9.9,15.3-16.2c0-2.9-1.1-5.5-5.7-5.5h-2.1C67,44.5,66.4,44.7,66,44.7z M132.8,47.1c0-1.1-0.8-1.9-2.1-1.9 c-2.3,0-4.4,1.5-7.6,5.3c-2.5,3.4-5.3,8.2-5.3,10.3c0,0.6,0.2,1.3,1.3,1.3s2.9-0.8,5.7-3.8c2.5-2.7,5.5-6.5,7.6-10.3 C132.8,47.7,132.8,47.3,132.8,47.1z M49.8,26.1c0.8,0,1.9,0.2,2.7,0.4c3.4,0.6,6.1,1.5,8.6,2.3c0.4-0.6,0.8-1.3,1.3-1.9l6.7-0.2 c-0.6,0.8-1.7,2.5-3.2,4.2c1.3,0.6,2.5,1.3,3.8,1.9C73.9,27.5,77.9,25,83,25c5.5,0,7.6,3.2,7.6,6.3c0,2.9-1.7,6.3-3.8,8.2 c-2.7,2.7-6.5,4-9.5,4.6c1.7,0.8,4.6,2.3,4.6,7.1c0,4-2.3,7.8-4.8,10.7c5-2.9,12.2-9.7,15.3-13.7c0.6-0.8,2.1-2.7,2.7-3.8l5.9-0.4 c0,0-7.6,11.3-9.2,14.3c-0.8,1.7-1.3,2.3-1.3,2.7c0,0.4,0.2,0.8,0.8,0.8c2.3,0,6.7-3.8,9.7-8c1.5-1.9,6.5-9.5,6.5-9.5l6.1-0.4 c-4.8,7.6-6.5,10.1-6.5,10.1c-1.7,2.5-2.9,4.8-3.2,6.1c-0.2,0.4-0.2,0.6-0.2,0.8c0,0.6,0.2,0.8,0.8,0.8c3.6,0,9.9-8.2,11.8-10.7 c3.6-4.6,8.2-7.8,13-7.8c2.1,0,3.6,0.8,4.2,2.3c1.3-2.1,3.6-5.7,5.5-9c0.2-0.4,0.4-0.6,0.6-0.8L62.6,6.1L49.8,26.1z M31.3,35.7 c0,1.5,0.4,2.7,1.5,3.8c0.6,0.6,1.5,1.3,2.5,1.5l7.6-11.6c0.8,0,1.9-0.2,2.9-0.2c0.6,0,1.3,0,1.9,0l-8,12.4c0.4,0,0.8,0,1.3,0 c0.6,0,1.3,0,1.9,0C50.4,41,55,37,56.7,34.9c0,0,3.6-5,3.8-5.3c-3.6-1.3-8.6-2.7-14.7-2.7C36.6,27.3,31.3,30.9,31.3,35.7z M255.5,97.7c0,0.6-0.2,1.3-0.6,1.7c-0.4,0.4-1.1,0.6-1.7,0.6c-0.6,0-1.3-0.2-1.7-0.6c-0.4-0.4-0.6-1.1-0.6-1.7s0.2-1.3,0.6-1.7 c0.4-0.4,1.1-0.6,1.7-0.6c0.6,0,1.3,0.2,1.7,0.6C255.3,96.4,255.5,96.8,255.5,97.7z M255,97.7c0-0.6-0.2-1.1-0.6-1.5 c-0.4-0.4-0.8-0.6-1.5-0.6c-0.6,0-1.1,0.2-1.5,0.6c-0.4,0.4-0.6,0.8-0.6,1.5s0.2,1.1,0.6,1.5c0.4,0.4,0.8,0.6,1.5,0.6 s1.1-0.2,1.5-0.6C254.8,98.7,255,98.1,255,97.7z M254.2,98.9h-0.6l-0.4-1.1h-0.6v1.1h-0.6V96h1.3c0.4,0,0.6,0,0.8,0.2 c0.2,0.2,0.2,0.4,0.2,0.6c0,0.4-0.2,0.6-0.6,0.8L254.2,98.9z M252.5,97.5h0.6c0.4,0,0.6-0.2,0.6-0.4c0-0.2-0.2-0.4-0.4-0.4h-0.6 v0.8H252.5z"> </path> </g> </svg></span></div>
+        <div class="logo"><span class="lg" style="--h:50px"><svg role="img" aria-label="Ford" fill="#FFFFFF" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8.236C5.872 8.236.905 9.93.905 12.002S5.872 15.767 12 15.767c6.127 0 11.094-1.693 11.094-3.765 0-2.073-4.967-3.766-11.094-3.766zm-5.698 6.24c-.656.005-1.233-.4-1.3-1.101a1.415 1.415 0 0 1 .294-1.02c.195-.254.525-.465.804-.517.09-.017.213-.006.264.054.079.093.056.194-.023.234-.213.109-.47.295-.597.55a.675.675 0 0 0 .034.696c.263.397.997.408 1.679-.225.169-.156.32-.304.473-.48.3-.344.4-.47.8-1.024.005-.006.006-.014.004-.018-.003-.007-.009-.01-.02-.01-.267.007-.5.087-.725.255-.065.048-.159.041-.2-.021-.046-.07-.013-.163.062-.215.363-.253.76-.298 1.166-.367 0 0 .028.002.051-.03.167-.213.292-.405.47-.621.178-.22.41-.42.586-.572.246-.212.404-.283.564-.37.043-.022-.005-.049-.018-.049-.896-.168-1.827-.386-2.717-.056-.616.23-.887.718-.757 1.045.093.231.397.27.683.13a1.55 1.55 0 0 0 .611-.544c.087-.134.27-.038.171.195-.26.611-.757 1.097-1.363 1.118-.516.016-.849-.363-.848-.831.002-.924 1.03-1.532 2.11-1.622 1.301-.108 2.533.239 3.825.395.989.12 1.938.123 2.932-.106.118-.025.2.05.193.168-.01.172-.143.337-.47.516-.373.204-.763.266-1.17.27-.984.008-1.901-.376-2.85-.582.002.041.012.091-.023.117-.525.388-1 .782-1.318 1.334-.011.013-.005.025.013.024.277-.015.525-.022.783-.042.045-.004.047-.015.043-.048a.64.64 0 0 1 .2-.558c.172-.153.387-.17.53-.06.16.126.147.353.058.523a.63.63 0 0 1-.382.31s-.03.006-.026.034c.006.043.2.151.217.18.017.027.008.07-.021.102a.123.123 0 0 1-.095.045c-.033 0-.053-.012-.096-.035a.92.92 0 0 1-.27-.217c-.024-.031-.037-.032-.099-.029-.279.017-.714.059-1.009.096-.071.008-.082.022-.096.047-.47.775-.972 1.61-1.523 2.17-.592.6-1.083.758-1.604.762zM19.05 10.71c-.091.158-1.849 2.834-1.96 3.11-.035.088-.04.155-.004.204.092.124.297.051.425-.038.381-.262.645-.58.937-.858.017-.013.046-.018.065 0 .043.04.106.091.15.137a.04.04 0 0 1 .002.057 5.873 5.873 0 0 1-.904.911c-.47.364-.939.457-1.172.224a.508.508 0 0 1-.14-.316c-.002-.057-.031-.06-.058-.034-.278.275-.76.579-1.198.362-.366-.18-.451-.618-.383-.986.001-.008-.006-.06-.051-.03a1.28 1.28 0 0 1-.3.162.853.853 0 0 1-.366.077.518.518 0 0 1-.451-.253.759.759 0 0 1-.095-.347c-.001-.011-.017-.032-.033-.005-.3.457-.579.899-.875 1.363-.016.022-.03.036-.06.037l-.587.001c-.036 0-.053-.028-.034-.063.104-.2.674-1.03 1.06-1.736.107-.194.085-.294.019-.337-.083-.054-.248.027-.387.133-.379.287-.697.735-.859.935-.095.117-.185.291-.433.56-.391.425-.91.669-1.408.5a.848.848 0 0 1-.546-.58c-.015-.052-.044-.066-.073-.032-.08.1-.245.249-.383.342-.015.011-.052.033-.084.017a.851.851 0 0 1-.152-.199.07.07 0 0 1 .016-.08c.197-.173.305-.271.391-.38.064-.08.113-.17.17-.315.12-.302.393-.866.938-1.158a1.81 1.81 0 0 1 .652-.219c.1-.01.183.002.213.08.011.033.039.105.056.158.011.032.003.057-.035.071-.32.122-.643.311-.865.61-.253.338-.321.746-.152.98.123.17.322.2.514.139.29-.092.538-.363.666-.663.138-.329.16-.717.058-1.059-.016-.059-.001-.104.037-.136.077-.063.184-.112.215-.128a.14.14 0 0 1 .182.045c.106.157.163.378.17.607.006.049.026.05.05.025.19-.202.366-.418.568-.58.185-.147.422-.267.643-.262.286.006.428.2.419.546-.001.044.03.04.051.011a1.19 1.19 0 0 1 .24-.264c.198-.163.4-.236.611-.222.26.02.468.257.425.527a.53.53 0 0 1-.281.406.362.362 0 0 1-.405-.044.336.336 0 0 1-.096-.322c.005-.025-.027-.048-.054-.02-.254.264-.273.606-.107.76.183.17.458.056.658-.075.366-.239.65-.563.979-.813.218-.166.467-.314.746-.351a.87.87 0 0 1 .454.052c.2.081.326.25.342.396.004.043.036.048.063.01.158-.246 1.005-1.517 1.075-1.65.02-.041.044-.047.089-.047h.606c.035 0 .051.02.036.047zm-2.32 2.204a.053.053 0 0 0-.003.04c.003.02.03.04.056.05.01.003.015.01.004.032-.075.16-.143.252-.237.391a1.472 1.472 0 0 1-.3.325c-.178.147-.424.307-.628.2-.09-.047-.13-.174-.127-.276.004-.288.132-.584.369-.875.288-.355.607-.539.816-.438.216.103.148.354.05.55zm-5.949-1.881a.398.398 0 0 1 .132-.345c.057-.05.133-.062.18-.022.052.045.027.157-.026.234a.43.43 0 0 1-.245.177c-.018.004-.034-.004-.041-.044zM12 7.5C5.34 7.5 0 9.497 0 12c0 2.488 5.383 4.5 12 4.5s12-2.02 12-4.5-5.383-4.5-12-4.5zm0 8.608C5.649 16.108.5 14.27.5 12.002.5 9.733 5.65 7.895 12 7.895s11.498 1.838 11.498 4.107c0 2.268-5.148 4.106-11.498 4.106z"/></svg></span></div>
+        <div class="logo"><span class="lg" style="--h:26px"><svg role="img" aria-label="Gillette" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35.992 8.971"><path d="M9.985 2.833a1.277 1.277 0 0 1-1.292-1.417C8.761.634 9.451 0 10.233 0s1.361.634 1.292 1.416c-.068.782-.757 1.417-1.54 1.417zm-1.451.415H11l-.942 5.341H7.61l.924-5.341zm3.63-3.013h2.465l-1.49 8.354h-2.448L12.164.235zM5.487 3.59c-.325-.428-.683-.668-.993-.668-.342 0-1.339.044-1.626 1.712-.343 1.986.889 1.969 1.164 1.969.273 0 .445 0 .719-.206l.102-.547h-1.01l.308-1.78h3.595l-.667 3.731c-1.541.856-2.431.958-3.322.958-3.544 0-4.006-2.773-3.664-4.69C.435 2.152 2.284.611 4.425.611c2.294 0 3.15 1.164 3.492 2.037l-2.43.942zm30.432 2.706l-3.725-.002c.043.584.349.969.702.969.248 0 .548-.096.719-.49l2.014.382c-.581 1.157-1.792 1.816-3.063 1.816-1.962 0-3.251-1.816-2.656-3.667l-.54-.002-.582 3.287h-2.466l.583-3.287h-.959l-.582 3.287h-2.465l.599-3.287h-.666c.021.286-.006.713-.061.995l-3.725-.003c.042.584.349.97.702.97.248 0 .548-.096.719-.49l2.014.382c-.581 1.157-1.791 1.816-3.063 1.816-1.56 0-2.785-1.205-2.785-2.659l-.411 2.276h-2.448L15.246.235h2.465l-.869 4.846c.499-1.224 1.751-2.114 3.1-2.114 1.321 0 2.5.547 2.816 1.852l.277-1.571h.805l.428-2.362h2.465l-.428 2.362h.958l.428-2.362h2.465l-.411 2.362h.822l-.215 1.174c.617-.871 1.646-1.454 2.737-1.454 2.343-.001 3.17 1.575 2.83 3.328zM19.213 5.3l1.424-.001c.054-.642-.273-.768-.649-.761-.284.005-.59.319-.775.762zm13.146.006l1.425.002c.054-.643-.271-.776-.647-.77-.286.005-.594.322-.778.768z"/></svg></span></div>
+      </div>
+      <div class="also">
+        <span>Também</span><em>·</em><span>SporTV</span><em>·</em><span>Nescau</span><em>·</em><span>Rider</span><em>·</em><span>New Era</span><em>·</em><span>Sesc</span><em>·</em><span>TV Escola</span><em>·</em><span>TV Justiça</span><em>·</em><span>USP</span><em>·</em><span>UNESP</span><em>·</em><span>Christian Vision</span><em>·</em><span>DeFrance Digital</span><em>·</em><span>Fundo Regenera</span><em>·</em><span>IRDESI CAMPI</span><em>·</em><span>Núcleo TUSP</span><em>·</em><span>Cia. dos Imaginários</span><em>·</em><span>Grupo Nahawand</span><em>·</em><span>Kipuka</span><em>·</em><span>Mina de HQ</span><em>·</em><span>Expo Revestir</span><em>·</em><span>Cycles</span><em>·</em><span>Guito</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 06 DIREÇÃO ═══ -->
+<section class="band" id="direcao">
+  <div class="shell">
+    <div class="band-head">
+      <div class="band-top"><span class="num">05</span><span class="rule"></span></div>
+      <h2>Direção</h2>
+    </div>
+    <div class="dir">
+      <div class="portrait tk"><img src="img/carol.webp" width="720" height="1280" alt="Retrato de Carolina Loureiro, diretora da Nômade." loading="lazy" decoding="async"></div>
+      <div class="dir-body">
+        <h3>Carolina Loureiro</h3>
+        <p>Produtora executiva, diretora e estrategista, sua atuação articula a densidade estética das artes cênicas com o volume implacável do audiovisual e o rigor da engenharia de operações.</p>
+        <p>O seu método não nasceu no mercado corporativo tradicional, mas na transição estrutural entre mundos. É fundamentado pela alfabetização clássica — que lhe conferiu o rigor analítico e a capacidade de traduzir conceitos complexos — e pelas Artes Cênicas, que operam como seu radar somático para leitura de ambientes e de equipes.</p>
+        <p>Na prática, essa base traduziu-se em escala e gestão multiplataforma: de fundar e operar uma produtora voltada aos setores de esporte e bens de consumo, à coordenação operacional de comunicação para emissoras públicas de alcance nacional. Sua trajetória cobre desde a direção de campanhas de alto volume e ritmo frenético, até a intersecção com o cinema documental independente e a arquitetura sistêmica para fundações.</p>
+        <p>Para Carolina, não há divisão entre a profundidade da arte e a viabilidade comercial: <span style="color:#E8EDF2;">todo projeto exige ser escutado com sensibilidade e entregue com precisão cirúrgica.</span></p>
+        <div class="dir-meta">
+          <div><span class="k">Formação</span><span class="v">Artes Cênicas · Teatro Escola Macunaíma<br>Ciências Sociais · USP<br>Ciências Econômicas · PUC-SP<br>Edição de Vídeo e Áudio · AIC<br>Streaming · ECA-USP</span></div>
+          <div><span class="k">Idiomas</span><span class="v">Português · nativo<br>Inglês · fluente<br>Italiano · fluente<br>Espanhol · avançado</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 07 CONTATO ═══ -->
+<footer class="foot" id="contato">
+  <div class="shell">
+    <h2>Conta o projeto.<br>A gente formula junto.</h2>
+    <div class="contacts">
+      <div><span class="k">E-mail</span><a href="mailto:loureirocarolbm@gmail.com">loureirocarolbm@gmail.com</a></div>
+      <div><span class="k">Substack</span><a href="https://voicenotercarol.substack.com/" target="_blank" rel="noopener noreferrer">voicenotercarol</a></div>
+      <div><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/carolina-loureiro-de-brito/" target="_blank" rel="noopener noreferrer">carolina-loureiro-de-brito</a></div>
+      <div><span class="k">Instagram</span><a href="https://www.instagram.com/carolinaloureiro/" target="_blank" rel="noopener noreferrer">@carolinaloureiro</a></div>
+    </div>
+    <div class="colophon">
+      <span>Nômade Produtora · São Paulo · Brasil</span>
+      <span>Direção — Carolina Loureiro</span>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function () {
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var hues = ["79,216,208", "232,90,156", "255,138,107"];
+  var gen = 0;
+
+  function run(cv, o) {
+    var r = window.devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
+    if (!w || !h) return;
+    cv.width = Math.round(w * r); cv.height = Math.round(h * r);
+    var ctx = cv.getContext("2d"); ctx.setTransform(r, 0, 0, r, 0, 0);
+    var N = [], n = Math.max(o.min, Math.min(o.max, Math.round(w / o.div)));
+    for (var i = 0; i < n; i++) {
+      var a = Math.random() * Math.PI * 2, rad = Math.pow(Math.random(), 0.68);
+      N.push({
+        x: o.cluster ? w * 0.5 + Math.cos(a) * rad * w * 0.56 : Math.random() * w,
+        y: o.cluster ? h * 0.42 + Math.sin(a) * rad * h * 0.6 : Math.random() * h,
+        r: o.rMin + Math.random() * o.rVar, c: hues[(Math.random() * hues.length) | 0],
+        vx: (Math.random() - 0.5) * o.speed, vy: (Math.random() - 0.5) * o.speed,
+        box: Math.random() < o.boxRate, id: (100 + Math.random() * 900) | 0
+      });
+    }
+    var mine = gen;
+    (function frame() {
+      if (mine !== gen) return;
+      ctx.clearRect(0, 0, w, h);
+      var i, j, a, b;
+      for (i = 0; i < N.length; i++) for (j = i + 1; j < N.length; j++) {
+        a = N[i]; b = N[j];
+        var dx = a.x - b.x, dy = a.y - b.y, d = Math.sqrt(dx * dx + dy * dy);
+        if (d < o.link) {
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = "rgba(79,216,208," + (o.lineA * (1 - d / o.link)) + ")";
+          ctx.lineWidth = 0.6; ctx.stroke();
+        }
+      }
+      for (i = 0; i < N.length; i++) {
+        a = N[i];
+        var g = ctx.createRadialGradient(a.x, a.y, 0, a.x, a.y, a.r);
+        g.addColorStop(0, "rgba(" + a.c + "," + o.coreA + ")");
+        g.addColorStop(0.45, "rgba(" + a.c + "," + (o.coreA * 0.3) + ")");
+        g.addColorStop(1, "rgba(" + a.c + ",0)");
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2); ctx.fill();
+        if (a.box) {
+          var s = a.r * 1.65;
+          ctx.strokeStyle = "rgba(79,216,208," + o.boxA + ")"; ctx.lineWidth = 0.7;
+          ctx.strokeRect(a.x - s, a.y - s, s * 2, s * 2);
+          ctx.fillStyle = "rgba(79,216,208," + (o.boxA * 1.4) + ")";
+          ctx.font = "8px ui-monospace, Menlo, monospace";
+          ctx.fillText("0." + a.id, a.x - s, a.y - s - 4);
+        }
+        a.x += a.vx; a.y += a.vy;
+        if (a.x < -70) a.x = w + 70; if (a.x > w + 70) a.x = -70;
+        if (a.y < -70) a.y = h + 70; if (a.y > h + 70) a.y = -70;
+      }
+      if (!reduce) requestAnimationFrame(frame);
+    })();
+  }
+
+  function paint() {
+    gen++;
+    var hero = document.getElementById("cells"), field = document.getElementById("field");
+    if (hero) run(hero, { min: 24, max: 54, div: 26, rMin: 8, rVar: 42, speed: 0.14, link: 158, lineA: 0.14, coreA: 0.5, boxRate: 0.24, boxA: 0.3, cluster: true });
+    if (field) run(field, { min: 14, max: 26, div: 62, rMin: 5, rVar: 16, speed: 0.07, link: 190, lineA: 0.07, coreA: 0.2, boxRate: 0.18, boxA: 0.13, cluster: false });
+  }
+
+  // ── navegação por âncora ──
+  // Dentro do visualizador de artifact a página vive num contêiner com rolagem
+  // própria, então o salto nativo de #hash mira o scroller errado. scrollIntoView
+  // encontra o ancestral que realmente rola e respeita o scroll-margin-top.
+  function anchors() {
+    var links = [].slice.call(document.querySelectorAll('a[href^="#"]'));
+    links.forEach(function (l) {
+      l.addEventListener("click", function (e) {
+        var id = l.getAttribute("href").slice(1);
+        var target = document.getElementById(id);
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      });
+    });
+  }
+
+  // ── scroll-spy: saber onde se está ──
+  function spy() {
+    var links = [].slice.call(document.querySelectorAll(".topnav a"));
+    var map = {};
+    links.forEach(function (l) { var t = document.querySelector(l.getAttribute("href")); if (t) map[t.id] = l; });
+    var targets = Object.keys(map).map(function (id) { return document.getElementById(id); });
+    if (!targets.length || !("IntersectionObserver" in window)) return;
+    var visible = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { visible[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0; });
+      var best = null, bestV = 0;
+      Object.keys(visible).forEach(function (id) { if (visible[id] > bestV) { bestV = visible[id]; best = id; } });
+      links.forEach(function (l) { l.classList.remove("on"); });
+      if (best && map[best]) map[best].classList.add("on");
+    }, { rootMargin: "-50px 0px -55% 0px", threshold: [0, 0.15, 0.4, 0.75, 1] });
+    targets.forEach(function (t) { io.observe(t); });
+  }
+
+  function init() { paint(); anchors(); spy(); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+
+  var t;
+  window.addEventListener("resize", function () { clearTimeout(t); t = setTimeout(paint, 220); });
+})();
+</script>
+
+</body>
+</html>
