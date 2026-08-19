@@ -21,7 +21,7 @@
 <style>
   /* ═══ Sistema Vivo ═══ mesmo mundo do one-pager. */
   :root {
-    --bg:#05070B; --ink:#E8EDF2; --soft:#8994A2; --faint:#5A6472;
+    --bg:#05070B; --ink:#E8EDF2; --soft:#8994A2; --faint:#98A2AF;
     --cyan:#4FD8D0; --magenta:#E85A9C; --coral:#FF8A6B;
     --edge:rgba(79,216,208,0.16); --edge-lo:rgba(79,216,208,0.09);
     --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -91,6 +91,21 @@
   .colophon{margin-top:clamp(30px,4vw,48px);padding-top:17px;border-top:1px solid var(--edge-lo);
             display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;
             font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+
+
+  @media (max-width:760px){
+    .head{padding:34px 0 24px}
+    .head h1{font-size:clamp(26px,8vw,36px)}
+    .grid{columns:2 140px;column-gap:8px}
+    .grid button{margin-bottom:8px}
+    main{padding:18px 0 34px}
+    .gal-group{margin-top:26px}
+    /* botoes do lightbox precisam de alvo de dedo */
+    .lb{padding:64px 12px 78px}
+    .lb button{min-width:52px;min-height:44px;font-size:15px;padding:10px 16px}
+    .lb .nav{bottom:16px;gap:14px}
+    .lb img{max-height:70vh}
+  }
 
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>

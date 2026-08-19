@@ -24,7 +24,8 @@
     --bg:      #05070B;
     --ink:     #E8EDF2;
     --soft:    #8994A2;
-    --faint:   #5A6472;
+    --faint:   #98A2AF;
+    --faint-2: #6E7A88;
     --cyan:    #4FD8D0;
     --magenta: #E85A9C;
     --coral:   #FF8A6B;
@@ -92,7 +93,7 @@
   .crafts {
     display: flex; flex-wrap: wrap; gap: 8px clamp(11px, 2vw, 22px);
     padding-top: 16px; border-top: 1px solid var(--edge);
-    font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint);
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint);
   }
 
   /* ── seções: hierarquia explícita ── */
@@ -105,6 +106,11 @@
   .band-head h2 { font-size: clamp(30px, 4.4vw, 52px); line-height: 1.06; letter-spacing: -0.032em; font-weight: 500; }
   .band-head .intro { margin: 18px 0 0; color: var(--soft); font-size: 14.5px; line-height: 1.68; max-width: 64ch; }
 
+.caps { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 28px; }
+  .caps span {
+    border: 1px solid var(--edge); border-radius: 2px; padding: 10px 15px;
+    font-size: 14.5px; line-height: 1.2; color: var(--ink);
+  }
   .prose { display: flex; flex-direction: column; gap: 16px; max-width: 66ch; }
   .prose p { margin: 0; color: var(--soft); font-size: 15px; line-height: 1.72; }
   .prose .hi { color: var(--ink); }
@@ -164,13 +170,16 @@
 
   /* ── marcas ── */
   .logos { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--edge-lo); border-left: 1px solid var(--edge-lo); }
-  @media (min-width: 560px) { .logos { grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 360px) { .logos { grid-template-columns: repeat(3, 1fr); } }
+  /* 7 logos nunca fecham linha: o ultimo ocupa a faixa inteira em vez de deixar buraco */
+  @media (max-width: 619px) { .logos > .logo:last-child { grid-column: 1 / -1; } }
+  @media (min-width: 620px) { .logos { grid-template-columns: repeat(4, 1fr); } }
   @media (min-width: 900px) { .logos { grid-template-columns: repeat(7, 1fr); } }
   .logo { min-height: 88px; padding: 16px 12px; border-right: 1px solid var(--edge-lo); border-bottom: 1px solid var(--edge-lo); display: flex; align-items: center; justify-content: center; text-align: center; }
   .logo .lg { display: flex; align-items: center; justify-content: center; width: 100%; }
   .logo .lg svg { width: auto; height: auto; max-width: 100%; max-height: var(--h, 28px); display: block; opacity: .9; }
   .topnav a.ext { color: var(--cyan); }
-  .also { margin-top: 20px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 5px clamp(9px, 1.4vw, 14px); font-family: var(--mono); font-size: 10px; letter-spacing: 0.05em; color: var(--faint); line-height: 1.9; }
+  .also { margin-top: 20px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 5px clamp(9px, 1.4vw, 14px); font-family: var(--mono); font-size: 12px; letter-spacing: 0.05em; color: var(--faint); line-height: 1.9; }
   .also em { font-style: normal; color: var(--cyan); opacity: 0.55; }
 
   /* ── contato ── */
@@ -182,6 +191,46 @@
   .contacts a { font-size: 14.5px; text-decoration: none; border-bottom: 1px solid var(--edge); padding-bottom: 2px; width: fit-content; max-width: 100%; overflow-wrap: anywhere; }
   .contacts a:hover, .contacts a:focus-visible { color: var(--cyan); border-bottom-color: var(--cyan); }
   .colophon { margin-top: clamp(34px, 4.6vw, 58px); padding-top: 18px; border-top: 1px solid var(--edge-lo); display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); }
+
+
+  /* ═══ mobile ═══ */
+  @media (max-width: 760px) {
+    /* o hero abria com ~314px de vazio antes da marca aparecer */
+    .hero { min-height: auto; padding-top: 34px; padding-bottom: 34px; }
+    .hero-grid { gap: 24px; }
+
+    /* faixas de seção: 56px em cada ponta somavam vãos de 130–146px */
+    section.band { padding: 40px 0; }
+    .band-head { margin-bottom: 22px; }
+    .band-head h2 { font-size: clamp(26px, 8vw, 34px); }
+    .foot { padding: 40px 0 30px; }
+
+    /* a tabela tinha 760px de conteúdo em 339px de tela: vira cartão empilhado */
+    .tw { overflow-x: visible; border-top: none; }
+    table.index { min-width: 0; display: block; }
+    table.index thead { display: none; }
+    table.index tbody, table.index tr, table.index td { display: block; width: auto; }
+    table.index tr {
+      border: 1px solid var(--edge-lo); border-radius: 2px;
+      padding: 16px; margin-bottom: 10px;
+    }
+    table.index tr:hover td { background: none; }
+    table.index td { border: none; padding: 0 0 12px; }
+    table.index td:last-child { padding-bottom: 0; }
+    table.index td::before {
+      content: attr(data-l); display: block;
+      font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--cyan); margin-bottom: 5px;
+    }
+    td.yr, td.fr, td.ct { white-space: normal; }
+    td.wk { min-width: 0; font-size: 15px; }
+    td.wk a { display: inline-block; padding: 11px 0 10px; }   /* alvo de toque >= 44px */
+    .scrollhint { display: none; }
+
+    .caps span { font-size: 13.5px; padding: 9px 13px; }
+    .contacts a { padding: 6px 0 4px; }
+    .dir { gap: 26px; }
+  }
 
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
@@ -231,6 +280,7 @@
       <div class="band-top"><span class="num">01</span><span class="rule"></span></div>
       <h2>A Nômade</h2>
     </div>
+    <div class="caps"><span>Audiovisual</span><span>Fotografia</span><span>Produção Executiva</span><span>Direção</span><span>Planejamento de Conteúdo</span><span>Estratégia de Comunicação</span></div>
     <div class="prose">
       <p class="lead">Chamam a Carol quando ainda não se sabe o que pedir.</p>
       <p>Uma produtora de ativos, não uma agência. A direção é o núcleo fixo, e a equipe é modular: monta-se a cada trabalho com a exatidão do que aquele projeto exige. Quem contrata conversa com uma única mente, do caos do primeiro rascunho à precisão da última entrega.</p>
@@ -287,22 +337,22 @@
       <table class="index">
         <thead><tr><th>Ano</th><th>Trabalho</th><th>Ofício</th><th>Contexto</th></tr></thead>
         <tbody>
-          <tr><td class="yr">2026</td><td class="wk"><a href="https://www.instagram.com/p/DbqdbpIxnnF/" target="_blank" rel="noopener noreferrer">Lançamento institucional de um fundo de impacto, do roteiro de palco ao vídeo manifesto</a></td><td class="fr">Estratégia<br>Produção Executiva</td><td class="ct">Fundo Regenera</td></tr>
-          <tr><td class="yr">2025</td><td class="wk"><a href="https://www.instagram.com/p/DNWArPvxCIi/" target="_blank" rel="noopener noreferrer">Gestão de marca 360° para artista nacional</a></td><td class="fr">Estratégia<br>Conteúdo</td><td class="ct">Guito · 13 peças</td></tr>
-          <tr><td class="yr">2025</td><td class="wk"><a href="https://www.instagram.com/p/DS2PDKMgHmq/" target="_blank" rel="noopener noreferrer">Cobertura e reels de lançamento editorial</a></td><td class="fr">Audiovisual</td><td class="ct">Kipuka · 8 peças</td></tr>
-          <tr><td class="yr">2025</td><td class="wk"><a href="https://www.instagram.com/p/DR5YOVfETWg/" target="_blank" rel="noopener noreferrer">Cobertura de CCXP e do lançamento Megafauna</a></td><td class="fr">Audiovisual</td><td class="ct">Mina de HQ · 5 peças</td></tr>
-          <tr><td class="yr">2025</td><td class="wk"><a href="https://www.instagram.com/p/DHPL0O0Sg4C/" target="_blank" rel="noopener noreferrer">Conteúdo de feira e ativação de marca</a></td><td class="fr">Audiovisual</td><td class="ct">Expo Revestir · 5 peças</td></tr>
-          <tr><td class="yr">2025</td><td class="wk">Produção executiva e direção técnica de shows de música árabe</td><td class="fr">Produção Executiva</td><td class="ct">Grupo Nahawand · Sesc · UNESP</td></tr>
-          <tr><td class="yr">2025</td><td class="wk">Coordenação geral de estande e posicionamento de marca em feira</td><td class="fr">Produção Executiva</td><td class="ct">Cycles · Feira Natural Tech</td></tr>
-          <tr><td class="yr">2024—25</td><td class="wk">Assistência de direção e fotografia de um longa-metragem documental</td><td class="fr">Direção<br>Audiovisual</td><td class="ct">Núcleo TUSP / USP · <em>As Bacantes</em></td></tr>
-          <tr><td class="yr">2024—25</td><td class="wk">Curso online de nove módulos para formação de educadores inclusivos</td><td class="fr">Conteúdo<br>Produção Executiva</td><td class="ct">IRDESI CAMPI</td></tr>
-          <tr><td class="yr">2024</td><td class="wk"><a href="https://www.instagram.com/p/C2QbaTwuzMR/" target="_blank" rel="noopener noreferrer">Conteúdo de marca para rede de alimentação</a></td><td class="fr">Audiovisual</td><td class="ct">Terrinha · 4 peças</td></tr>
-          <tr><td class="yr">2023—25</td><td class="wk"><a href="https://www.youtube.com/watch?v=Tdtq-tcCP2I&amp;list=PLVwNANcUXyA8UCF5BWI3lwIHnuO8pII8W" target="_blank" rel="noopener noreferrer">Direção do programa <em>Saber Direito</em> e comunicação institucional</a></td><td class="fr">Direção<br>Conteúdo</td><td class="ct">FUNDAC / TV Justiça · STF</td></tr>
-          <tr><td class="yr">2023—24</td><td class="wk">Fluxos operacionais, padrões técnicos de conteúdo e campanhas multinicho em inglês</td><td class="fr">Estratégia<br>Conteúdo</td><td class="ct">DeFrance Digital</td></tr>
-          <tr><td class="yr">2022—23</td><td class="wk">Gestão de produção e implantação de plataforma de streaming e EAD</td><td class="fr">Produção Executiva</td><td class="ct">TV Escola · ACERP</td></tr>
-          <tr><td class="yr">2021—23</td><td class="wk"><a href="https://www.cvglobal.co/en/videos/71273" target="_blank" rel="noopener noreferrer">Direção de entrevistas, conteúdo documental e eventos globais online</a></td><td class="fr">Direção<br>Conteúdo</td><td class="ct">Christian Vision</td></tr>
-          <tr><td class="yr">2013—23</td><td class="wk"><a href="https://www.youtube.com/@canalchua" target="_blank" rel="noopener noreferrer">Canal de basquete mantido por uma década, do roteiro à edição</a></td><td class="fr">Direção<br>Audiovisual</td><td class="ct">Canal Chuá · 900+ vídeos</td></tr>
-          <tr><td class="yr">2013—23</td><td class="wk">Campanhas, coberturas e ativações para marcas esportivas e de consumo</td><td class="fr">Produção Executiva<br>Audiovisual</td><td class="ct">Máfia Produtora</td></tr>
+          <tr><td class="yr" data-l="Ano">2026</td><td class="wk" data-l="Trabalho"><a href="https://www.instagram.com/p/DbqdbpIxnnF/" target="_blank" rel="noopener noreferrer">Lançamento institucional de um fundo de impacto, do roteiro de palco ao vídeo manifesto</a></td><td class="fr" data-l="Ofício">Estratégia<br>Produção Executiva</td><td class="ct" data-l="Contexto">Fundo Regenera</td></tr>
+          <tr><td class="yr" data-l="Ano">2025</td><td class="wk" data-l="Trabalho"><a href="https://www.instagram.com/p/DNWArPvxCIi/" target="_blank" rel="noopener noreferrer">Gestão de marca 360° para artista nacional</a></td><td class="fr" data-l="Ofício">Estratégia<br>Conteúdo</td><td class="ct" data-l="Contexto">Guito · 13 peças</td></tr>
+          <tr><td class="yr" data-l="Ano">2025</td><td class="wk" data-l="Trabalho"><a href="https://www.instagram.com/p/DS2PDKMgHmq/" target="_blank" rel="noopener noreferrer">Cobertura e reels de lançamento editorial</a></td><td class="fr" data-l="Ofício">Audiovisual</td><td class="ct" data-l="Contexto">Kipuka · 8 peças</td></tr>
+          <tr><td class="yr" data-l="Ano">2025</td><td class="wk" data-l="Trabalho"><a href="https://www.instagram.com/p/DR5YOVfETWg/" target="_blank" rel="noopener noreferrer">Cobertura de CCXP e do lançamento Megafauna</a></td><td class="fr" data-l="Ofício">Audiovisual</td><td class="ct" data-l="Contexto">Mina de HQ · 5 peças</td></tr>
+          <tr><td class="yr" data-l="Ano">2025</td><td class="wk" data-l="Trabalho"><a href="https://www.instagram.com/p/DHPL0O0Sg4C/" target="_blank" rel="noopener noreferrer">Conteúdo de feira e ativação de marca</a></td><td class="fr" data-l="Ofício">Audiovisual</td><td class="ct" data-l="Contexto">Expo Revestir · 5 peças</td></tr>
+          <tr><td class="yr" data-l="Ano">2025</td><td class="wk" data-l="Trabalho">Produção executiva e direção técnica de shows de música árabe</td><td class="fr" data-l="Ofício">Produção Executiva</td><td class="ct" data-l="Contexto">Grupo Nahawand · Sesc · UNESP</td></tr>
+          <tr><td class="yr" data-l="Ano">2025</td><td class="wk" data-l="Trabalho">Coordenação geral de estande e posicionamento de marca em feira</td><td class="fr" data-l="Ofício">Produção Executiva</td><td class="ct" data-l="Contexto">Cycles · Feira Natural Tech</td></tr>
+          <tr><td class="yr" data-l="Ano">2024—25</td><td class="wk" data-l="Trabalho">Assistência de direção e fotografia de um longa-metragem documental</td><td class="fr" data-l="Ofício">Direção<br>Audiovisual</td><td class="ct" data-l="Contexto">Núcleo TUSP / USP · <em>As Bacantes</em></td></tr>
+          <tr><td class="yr" data-l="Ano">2024—25</td><td class="wk" data-l="Trabalho">Curso online de nove módulos para formação de educadores inclusivos</td><td class="fr" data-l="Ofício">Conteúdo<br>Produção Executiva</td><td class="ct" data-l="Contexto">IRDESI CAMPI</td></tr>
+          <tr><td class="yr" data-l="Ano">2024</td><td class="wk" data-l="Trabalho"><a href="https://www.instagram.com/p/C2QbaTwuzMR/" target="_blank" rel="noopener noreferrer">Conteúdo de marca para rede de alimentação</a></td><td class="fr" data-l="Ofício">Audiovisual</td><td class="ct" data-l="Contexto">Terrinha · 4 peças</td></tr>
+          <tr><td class="yr" data-l="Ano">2023—25</td><td class="wk" data-l="Trabalho"><a href="https://www.youtube.com/watch?v=Tdtq-tcCP2I&amp;list=PLVwNANcUXyA8UCF5BWI3lwIHnuO8pII8W" target="_blank" rel="noopener noreferrer">Direção do programa <em>Saber Direito</em> e comunicação institucional</a></td><td class="fr" data-l="Ofício">Direção<br>Conteúdo</td><td class="ct" data-l="Contexto">FUNDAC / TV Justiça · STF</td></tr>
+          <tr><td class="yr" data-l="Ano">2023—24</td><td class="wk" data-l="Trabalho">Fluxos operacionais, padrões técnicos de conteúdo e campanhas multinicho em inglês</td><td class="fr" data-l="Ofício">Estratégia<br>Conteúdo</td><td class="ct" data-l="Contexto">DeFrance Digital</td></tr>
+          <tr><td class="yr" data-l="Ano">2022—23</td><td class="wk" data-l="Trabalho">Gestão de produção e implantação de plataforma de streaming e EAD</td><td class="fr" data-l="Ofício">Produção Executiva</td><td class="ct" data-l="Contexto">TV Escola · ACERP</td></tr>
+          <tr><td class="yr" data-l="Ano">2021—23</td><td class="wk" data-l="Trabalho"><a href="https://www.cvglobal.co/en/videos/71273" target="_blank" rel="noopener noreferrer">Direção de entrevistas, conteúdo documental e eventos globais online</a></td><td class="fr" data-l="Ofício">Direção<br>Conteúdo</td><td class="ct" data-l="Contexto">Christian Vision</td></tr>
+          <tr><td class="yr" data-l="Ano">2013—23</td><td class="wk" data-l="Trabalho"><a href="https://www.youtube.com/@canalchua" target="_blank" rel="noopener noreferrer">Canal de basquete mantido por uma década, do roteiro à edição</a></td><td class="fr" data-l="Ofício">Direção<br>Audiovisual</td><td class="ct" data-l="Contexto">Canal Chuá · 900+ vídeos</td></tr>
+          <tr><td class="yr" data-l="Ano">2013—23</td><td class="wk" data-l="Trabalho">Campanhas, coberturas e ativações para marcas esportivas e de consumo</td><td class="fr" data-l="Ofício">Produção Executiva<br>Audiovisual</td><td class="ct" data-l="Contexto">Máfia Produtora</td></tr>
         </tbody>
       </table>
     </div>
@@ -379,7 +429,10 @@
     if (!w || !h) return;
     cv.width = Math.round(w * r); cv.height = Math.round(h * r);
     var ctx = cv.getContext("2d"); ctx.setTransform(r, 0, 0, r, 0, 0);
-    var N = [], n = Math.max(o.min, Math.min(o.max, Math.round(w / o.div)));
+    var estreito = w < 760;
+    // em tela estreita a mesma contagem se concentra e atrapalha a leitura
+    var N = [], n = Math.max(estreito ? Math.round(o.min * 0.5) : o.min,
+                             Math.min(o.max, Math.round(w / o.div)));
     for (var i = 0; i < n; i++) {
       var a = Math.random() * Math.PI * 2, rad = Math.pow(Math.random(), 0.68);
       N.push({
@@ -407,7 +460,7 @@
       for (i = 0; i < N.length; i++) {
         a = N[i];
         var g = ctx.createRadialGradient(a.x, a.y, 0, a.x, a.y, a.r);
-        g.addColorStop(0, "rgba(" + a.c + "," + o.coreA + ")");
+        g.addColorStop(0, "rgba(" + a.c + "," + (estreito ? o.coreA * 0.68 : o.coreA) + ")");
         g.addColorStop(0.45, "rgba(" + a.c + "," + (o.coreA * 0.3) + ")");
         g.addColorStop(1, "rgba(" + a.c + ",0)");
         ctx.fillStyle = g; ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2); ctx.fill();
@@ -453,9 +506,15 @@
 
   // ── scroll-spy: saber onde se está ──
   function spy() {
-    var links = [].slice.call(document.querySelectorAll(".topnav a"));
+    // so âncoras internas: um href como "galeria/" nao e seletor CSS valido
+    var links = [].slice.call(document.querySelectorAll('.topnav a[href^="#"]'));
     var map = {};
-    links.forEach(function (l) { var t = document.querySelector(l.getAttribute("href")); if (t) map[t.id] = l; });
+    links.forEach(function (l) {
+      var href = l.getAttribute("href");
+      if (!href || href.charAt(0) !== "#" || href.length < 2) return;
+      var t = document.getElementById(href.slice(1));
+      if (t) map[t.id] = l;
+    });
     var targets = Object.keys(map).map(function (id) { return document.getElementById(id); });
     if (!targets.length || !("IntersectionObserver" in window)) return;
     var visible = {};
